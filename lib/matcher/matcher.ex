@@ -32,9 +32,13 @@ defmodule Cedar.Matcher do
     def process_line(filename, sentence, {action, pre, post}) do
       # Regex tokenises in such a way that "ward 9" is one token
       params = parse_sentence(sentence)
-
       [f | args] = params
-      apply(Cedar.Matcher.Step, func_name(f), [filename, args, {action, pre,post}] )
+      #try do
+      #rescue
+      #  e -> IO.inspect e
+      #end
+
+      apply(Cedar.Matcher.Step, func_name(f), [filename, args, {action, pre, post}] )
     end
 
     @doc """

@@ -22,8 +22,8 @@ defmodule Cedar.Decider do
   def decide do
     receive do
       { :change, params } ->
-        {:ok, pre}  = Poison.decode("#{params[:pre]}")
-        {:ok, post} = Poison.decode("#{params[:post]}")
+        pre  = params[:pre]
+        post  = params[:post]
         endpoint    = params[:endpoint]
 
         IO.puts "Called change for endpoint #{endpoint}"
