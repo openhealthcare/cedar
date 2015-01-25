@@ -93,7 +93,11 @@ defmodule Cedar.Matcher.Step do
 
   defrule then(_behaviour, [h|t], {action, pre, post}) do
       # We want to apply the action h and pass t as the args
-      apply(Actions, h, [_behaviour, t, {action, pre, post}])
+      try do
+        apply(Actions, h, [_behaviour, t, {action, pre, post}])
+      rescue
+        e -> IO.inspect e
+      end
   end
 
 end

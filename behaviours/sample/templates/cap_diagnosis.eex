@@ -1,0 +1,6 @@
+A patient has been diagnosed with CAP !
+
+The patient is:
+
+NHS Number <%= hd(episode["demographics"])["nhs_number"] %>
+Hospital number <%= hd(episode["demographics"])["hospital_number"] %>

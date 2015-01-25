@@ -28,30 +28,30 @@ defmodule Cedar.Actions do
         hd(Path.wildcard "#{template}/#{filename}*")
     end
 
-    def email(behaviour, [recipient, :with, content], {pre, post}) do
+    def email(behaviour, [recipient, :with, content], {action, pre, post}) do
         IO.puts "email action"
         contents = EEx.eval_file template(behaviour, content), [pre: pre, post: post]
         Cedar.Actions.Email.send recipient, "Auto Email from CEDAR", contents
     end
 
-    def broadcast(behaviour, [msg], {pre, post}) do
+    def broadcast(behaviour, [msg], {action, pre, post}) do
         IO.puts "broadcast action"
 
         {:ok, "Sent"}
     end
 
-    def return(behaviour, [msg], {pre, post}) do
+    def return(behaviour, [msg], {action, pre, post}) do
         IO.puts "return action"
         contents = EEx.eval_file template(behaviour, msg), [pre: pre, post: post]
     end
 
-    def sms(behaviour, [msg, :to, number], {pre, post}) do
+    def sms(behaviour, [msg, :to, number], {action, pre, post}) do
         IO.puts "sms action"
 
         {:ok, "Sent"}
     end
 
-    def refer(behaviour, [:to, target], {pre, post}) do
+    def refer(behaviour, [:to, target], {action, pre, post}) do
         IO.puts "refer"
 
         {:ok, "Sent"}
