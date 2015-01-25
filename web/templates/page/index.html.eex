@@ -1,0 +1,38 @@
+<div class="jumbotron">
+  <h2>Welcome to DDD!</h2>
+  <p class="lead">
+    Something somewhere between <a href="http://xkcd.com/518/">this</a>, IFTTT and Yahoo Pipes, right? I mean eventually, not right now. And more the former than the latter.
+  </p>
+  <p class="lead">
+    To be easy to create rules, easy to tie them together and take data from the local data you’ve got, as well as potentially external sources.   JSON in, JSON out.
+  </p>
+</div>
+
+<div class="row marketing">
+  <div class="col-lg-6">
+    <h4>Resources</h4>
+    <ul>
+      <li><a href="/api/v0.1/">Online API docs</a></li>
+      </li>
+      <li>
+        <a href="https://github.com/openhealthcare/ddd">Source</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-lg-6">
+    <h4>Help</h4>
+    <ul>
+      <li>
+        <a href="https://github.com/openhealthcare/ddd/issues?state=open">Issues</a>
+      </li>
+      <li>
+        <a href="irc://irc.freenode.net/ohc_dev">#ohc_dev on freenode IRC</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/ohcuk">@ohcuk</a>
+      </li>
+    </ul>
+  </div>
+</div>
+

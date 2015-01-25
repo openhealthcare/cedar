@@ -1,0 +1,13 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/api/v0.1/">API v0.1</a></li>
+  <li class="active">valid_rule</li>
+</ol>
+<h1>/change</h1>
+<p class="lead">
+  Checks whether a given sentence is a valid rule
+</p>
+<h4>Params</h4>
+<ul>
+  <li>sentence: The plain english sentence</li>
+</ul>

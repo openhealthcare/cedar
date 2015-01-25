@@ -1,0 +1,127 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/api/v0.1/">API v0.1</a></li>
+</ol>
+<div class="jumbotron">
+  <h2>Hello Beautiful World</h2>
+  <h4>DDD Has some APIs. These are version 0.1.</h4>
+
+
+  <table border="0" width="100%" class="apilist">
+      <tr>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admission</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Notify DDD of a patient admission
+                    </div>
+                    <a class="btn" href="/api/v0.1/admit">Read more</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Discharge</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Notify DDD of a patient being discharged
+                    </div>
+                    <a class="btn" href="/api/v0.1/discharge">Read more</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Transfer</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Tell DDD when a patient is transferred
+                    </div>
+                    <a class="btn" href="/api/v0.1/transfer">Read more</a>
+                </div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pre-admission</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Record pre-admission information for a patient
+                    </div>
+                    <a class="btn" href="/api/v0.1/preadmission">Read more</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registration</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                    Notify DDD of a patient registration
+                    </div>
+                    <a class="btn" href="/api/v0.1/registration">Read more</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Update</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Notify DDD of an update to patient information
+                    </div>
+                    <a class="btn" href="/api/v0.1/update">Read more</a>
+
+                </div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Change</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Tell DDD of a change
+                    </div>
+                    <a class="btn" href="/api/v0.1/change">Read more</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Valid Rule</h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Checks whether a sentence can be processed
+                    </div>
+                    <a class="btn" href="/api/v0.1/rules/check">Read more</a>
+                </div>
+            </div>
+        </td>
+        <td>
+        </td>
+      </tr>
+  </table>
+
+</div>
+

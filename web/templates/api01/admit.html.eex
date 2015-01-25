@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/api/v0.1/">API v0.1</a></li>
+  <li class="active">admit</li>
+</ol>
+<h1>/admit</h1>
+<p class="lead">
+  Notify DDD of an admission.
+</p>
+<h4>Params</h4>
+<ul>
+  <li>episode: JSON Serialized episode of care</li>
+  <li>endpoint: Place to POST any resulting triggers from this change</li>
+</ul>

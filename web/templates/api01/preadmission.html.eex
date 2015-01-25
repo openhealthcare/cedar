@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/api/v0.1/">API v0.1</a></li>
+  <li class="active">preadmission</li>
+</ol>
+<h1>/preadmission</h1>
+<p class="lead">
+  Notify DDD of a pre-admission.
+</p>
+<h4>Params</h4>
+<ul>
+  <li>pre: JSON Serialized state before the change</li>
+  <li>post: JSON Serialized state after the change</li>
+  <li>endpoint: Place to POST any resulting triggers from this change</li>
+</ul>
