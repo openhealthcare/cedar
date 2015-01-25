@@ -26,7 +26,8 @@ defmodule Cedar.Mixfile do
      {:cowboy, "~> 1.0"},
       {:mailgun, "~> 0.0.1"},
       {:httpoison, "~> 0.5"},
-      {:twilio, git: "git://github.com/openhealthcare/twilio_erlang.git"}
+      {:twilio, git: "git://github.com/openhealthcare/twilio_erlang.git"},
+      {:exrm, "~> 0.14.16"}
     ]
   end
 end
