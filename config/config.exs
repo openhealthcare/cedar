@@ -9,7 +9,8 @@ use Mix.Config
 config :cedar, Cedar.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "dywFWz8XZvQwGDVA6MA4bllVBBPqtZE8psfnf+7PSCxOsC4sCigQ5/rriKCUfkVR",
-  debug_errors: false
+  debug_errors: false,
+  server: true
 
 # Configures Elixir's Logger
 config :logger, :console,

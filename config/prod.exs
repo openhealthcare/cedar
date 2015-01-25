@@ -12,7 +12,7 @@ use Mix.Config
 # disk for the key and cert.
 
 config :cedar, Cedar.Endpoint,
-  url: [host: "example.com"],
+  url: [host: "localhost"],
   http: [port: System.get_env("PORT")],
   secret_key_base: "dywFWz8XZvQwGDVA6MA4bllVBBPqtZE8psfnf+7PSCxOsC4sCigQ5/rriKCUfkVR"
 

@@ -15,7 +15,7 @@
       <li><a href="/api/v0.1/">Online API docs</a></li>
       </li>
       <li>
-        <a href="https://github.com/openhealthcare/ddd">Source</a>
+        <a href="https://github.com/openhealthcare/cedar">Source</a>
       </li>
     </ul>
   </div>
@@ -24,7 +24,7 @@
     <h4>Help</h4>
     <ul>
       <li>
-        <a href="https://github.com/openhealthcare/ddd/issues?state=open">Issues</a>
+        <a href="https://github.com/openhealthcare/cedar/issues?state=open">Issues</a>
       </li>
       <li>
         <a href="irc://irc.freenode.net/ohc_dev">#ohc_dev on freenode IRC</a>

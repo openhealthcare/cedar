@@ -9,8 +9,6 @@ defmodule Cedar do
     children = [
       # Start the endpoint when the application starts
       worker(Cedar.Endpoint, []),
-
-      # Here you could define other workers and supervisors as children
       worker(Cedar.Decider, []),
     ]
 
