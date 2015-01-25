@@ -6,7 +6,6 @@ defmodule Cedar.Decider do
   def start_link do
     sub = spawn_link &(decide/0)
     Phoenix.PubSub.subscribe(sub, "decision")
-    IO.puts "LOADED!"
     {:ok, sub}
   end
 
@@ -59,7 +58,6 @@ defmodule Cedar.Decider do
 
         Path.wildcard("behaviours/*/*.behaviour")
           |> Enum.map(&(behave &1, :transfer, {pre, post, endpoint}))
-
 
       _ ->
     end
