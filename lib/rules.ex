@@ -40,6 +40,11 @@ defmodule Cedar.Rules do
   """
   def add(rule, path \\ "global") do
 
+    folder = "behaviours/#{path}"
+    case File.exists?(folder) do
+      false -> File.mkdir_p(folder)
+    end
+
     p = "behaviours/#{path}/#{rule}.behaviour"
     exists = File.exists?(p)
     if not exists do
@@ -47,7 +52,7 @@ defmodule Cedar.Rules do
     end
 
     case exists do
-      false -> [path,"#{rule}.behaviour"]
+      false -> [path, "#{rule}.behaviour"]
       true -> [nil,nil]
     end
   end

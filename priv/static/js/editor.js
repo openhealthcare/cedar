@@ -7,14 +7,24 @@ app.controller("NewRuleCtrl", function( $scope, $http, $modalInstance ) {
 
     $scope.createNewRule = function() {
 
-        $http.post("/api/v0.1/rules/", {rule: $scope.editing.name, path: ""}).then(
+        var name = $scope.editing.name;
+        var path = "";
+
+        if ( name.indexOf('/') != -1 ) {
+            var parts = name.split('/');
+            path = parts[0];
+            name = parts[1];
+        }
+
+        $http.post("/api/v0.1/rules/", {rule: name, path: path}).then(
             function(response) {
+                console.log(response.data);
+
                 if (! response.data.success) {
                     alert("Warn that the name is already in use");
                 } else {
                     $modalInstance.close(response.data);
                 }
-
         });
 
     };
@@ -59,6 +69,15 @@ app.controller('EditorCtrl', function($scope, $http, $modal){
         var parent = _.find($scope.treedata, function(cell){
             return cell.label == folder;
         });
+
+        if (!parent) {
+            parent = {
+                label: folder,
+                id: folder,
+                children: []
+            };
+        }
+
         var newObj = {
             label : filename,
             id : folder + "/" + filename,
