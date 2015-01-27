@@ -24,7 +24,7 @@ defmodule Cedar.Decider do
       { :change, params } ->
         pre  = params[:pre]
         post  = params[:post]
-        endpoint    = params[:endpoint]
+        endpoint = params[:endpoint]
 
         IO.puts "Called change for endpoint #{endpoint}"
 
@@ -32,7 +32,7 @@ defmodule Cedar.Decider do
           |> Enum.map(&(behave &1, :change, {pre, post, endpoint}))
 
       { :admit, params } ->
-        {:ok, episode} = Poison.decode("#{params[:episode]}")
+        episode = params[:episode]
         endpoint    = params[:endpoint]
 
         IO.puts "Called admit for endpoint #{endpoint}"
@@ -41,7 +41,7 @@ defmodule Cedar.Decider do
           |> Enum.map(&(behave &1, :admit, {%{}, episode, endpoint}))
 
       { :discharge, params } ->
-        {:ok, episode} = Poison.decode("#{params[:episode]}")
+        episode = params[:episode]
         endpoint    = params[:endpoint]
 
         IO.puts "Called discharge for endpoint #{endpoint}"
@@ -50,8 +50,8 @@ defmodule Cedar.Decider do
           |> Enum.map(&(behave &1, :discharge, {episode, episode, endpoint}))
 
       { :transfer, params } ->
-        {:ok, pre}  = Poison.decode("#{params[:pre]}")
-        {:ok, post} = Poison.decode("#{params[:post]}")
+        pre  = params[:pre]
+        post  = params[:post]
         endpoint    = params[:endpoint]
 
         IO.puts "Called transfer for endpoint #{endpoint}"

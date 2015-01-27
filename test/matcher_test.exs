@@ -111,6 +111,11 @@ defmodule MatcherTest do
     assert ok == :fail
   end
 
+  test "invalid sentence sneaking through" do
+    {ok, _} = Cedar.Matcher.process_line @fb, "When admitted to Ward 8", {:admit, @empty, %{}}
+    assert ok == :fail
+  end
+
   test "is rule is valid" do
     assert Cedar.Matcher.can_evaluate?("When \"X\" is \"Y\"")
   end
