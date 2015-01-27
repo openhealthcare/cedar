@@ -38,16 +38,16 @@ defmodule Cedar.Rules do
 
   TODO: Let it also specify the path
   """
-  def add(rule, path) do
+  def add(rule, path \\ "global") do
 
-    p = "behaviours/sample/" <> rule <> ".behaviour"
+    p = "behaviours/#{path}/#{rule}.behaviour"
     exists = File.exists?(p)
     if not exists do
       File.write p, ""
     end
 
     case exists do
-      false -> ["sample","#{rule}.behaviour"]
+      false -> [path,"#{rule}.behaviour"]
       true -> [nil,nil]
     end
   end

@@ -4,8 +4,8 @@ defmodule RulesTest do
 
   test "get rule tree" do
     tree = Cedar.Rules.ruletree
-    assert "sample.behaviour" in tree["sample"]
-    assert "my.behaviour" in tree["sample"]
+    assert "sample.behaviour" in tree["global"]
+    assert "my.behaviour" in tree["global"]
   end
 
 end

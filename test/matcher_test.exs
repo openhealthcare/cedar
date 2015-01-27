@@ -6,8 +6,8 @@ defmodule MatcherTest do
   @full %{ "diagnosis" =>  [ %{ "name" => "CAP" }, %{ "name" => "GORD" } ] }
   @_ :action
 
-  test "Match on sample behaviour" do
-    success = Cedar.Matcher.process_block("behaviours/sample/sample.behaviour", @_, {@empty, @full})
+  test "Match on global behaviour" do
+    success = Cedar.Matcher.process_block("behaviours/global/sample.behaviour", @_, {@empty, @full})
     assert(success == true)
   end
 
