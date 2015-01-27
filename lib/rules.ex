@@ -36,13 +36,14 @@ defmodule Cedar.Rules do
   in the appropriate place (which is empty initially).  It will
   return true on success, false if the file already exists.
 
-  TODO: Let it also specify the path
+  TODO: This needs to be much safer, it isn't safe.
   """
   def add(rule, path \\ "global") do
 
     folder = "behaviours/#{path}"
     case File.exists?(folder) do
       false -> File.mkdir_p(folder)
+      true -> ""
     end
 
     p = "behaviours/#{path}/#{rule}.behaviour"

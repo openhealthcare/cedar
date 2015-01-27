@@ -14,6 +14,9 @@ app.controller("NewRuleCtrl", function( $scope, $http, $modalInstance ) {
             var parts = name.split('/');
             path = parts[0];
             name = parts[1];
+        } else {
+            /* This should be the selected folder in the tree */
+            path = "global";
         }
 
         $http.post("/api/v0.1/rules/", {rule: name, path: path}).then(
@@ -76,6 +79,7 @@ app.controller('EditorCtrl', function($scope, $http, $modal){
                 id: folder,
                 children: []
             };
+            $scope.treedata.push(parent);
         }
 
         var newObj = {
@@ -83,6 +87,7 @@ app.controller('EditorCtrl', function($scope, $http, $modal){
             id : folder + "/" + filename,
             children: []
         };
+
         parent.children.push(newObj);
         parent.children = _.sortBy(parent.children, function(node){ return node.label });
         return newObj;
