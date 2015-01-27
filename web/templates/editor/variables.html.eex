@@ -1,0 +1,18 @@
+
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li class="active">Variables</li>
+</ol>
+
+ <div ng-controller="EditorCtrl">
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>Variables</h1>
+    <p>Creating "variables" allows you to use them in place of strings when you are creating rules. It is easier to use <strong>@all_email</strong> than to type out the email addresses each time.</p>
+  </div>
+
+
+
+
+</div>

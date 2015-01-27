@@ -12,7 +12,7 @@
 
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
-  <li class="active">Editor</li>
+  <li class="active">Rules</li>
 </ol>
 
  <div ng-controller="EditorCtrl">

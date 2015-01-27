@@ -16,7 +16,9 @@ defmodule Cedar.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index, as: :pages
-    get "/rules/", EditorController, :editor
+    get "/editor/rules", EditorController, :editor
+    get "/editor/variables", EditorController, :variables
+    get "/status", StatusController, :index
     get "/api/v0.1/", Api01Controller, :index
   end
 
