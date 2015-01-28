@@ -57,7 +57,12 @@ defmodule Mix.Tasks.Cedar do
     """
     """
     defp dump do
-
+      Amnesia.start
+      Amnesia.transaction do
+        # TODO: Fix me, I am horribly broken.
+        Db.Variable |> Amnesia.Selection.values |> Enum.each &IO.inspect(&1)
+      end
+      Amnesia.stop
     end
 
     defp delete do
