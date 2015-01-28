@@ -8,7 +8,7 @@ To be easy to create rules, easy to tie them together and take data from the loc
 To start your CEDAR application you have to:
 
 1. Install dependencies with `mix deps.get`
-2. Create a variable store `mix cedar.database creat`
+2. Create a variable store `mix cedar.database create`
 3. Start Phoenix router with `mix phoenix.server`
 
 Now you can visit `localhost:4000` from your browser.
