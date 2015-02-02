@@ -10,6 +10,7 @@ defmodule Cedar do
       # Start the endpoint when the application starts
       worker(Cedar.Endpoint, []),
       worker(Cedar.Decider, []),
+      worker(Cedar.Audit, []),
     ]
 
     # Start amnesia and wait for the database to be ready
