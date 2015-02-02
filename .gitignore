@@ -6,3 +6,4 @@ erl_crash.dump
 /Mnesia*
 /cedar_db
 /test_db
+/logs
