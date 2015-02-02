@@ -1,4 +1,5 @@
 defmodule Cedar.Actions do
+    import Cedar.Matcher.Step, only: [resolve_var: 1]
 
     @moduledoc """
     The functions defined in this module are intended to be 'step'-style
@@ -31,7 +32,7 @@ defmodule Cedar.Actions do
     def email(behaviour, [recipient, :with, content], {action, pre, post}) do
         IO.puts "email action"
         contents = EEx.eval_file template(behaviour, content), [pre: pre, post: post]
-        Cedar.Actions.Email.send recipient, "Auto Email from CEDAR", contents
+        Cedar.Actions.Email.send resolve_var(recipient), "Auto Email from CEDAR", contents
     end
 
     def broadcast(behaviour, [msg], {action, pre, post}) do
