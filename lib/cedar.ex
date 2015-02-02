@@ -13,6 +13,7 @@ defmodule Cedar do
     ]
 
     # Start amnesia and wait for the database to be ready
+    :application.set_env(:mnesia, :dir, 'cedar_db')
     Amnesia.start
     Db.wait
 

@@ -23,8 +23,6 @@ defmodule Mix.Tasks.Cedar do
           mix cedar.database delete
     """
     def run(_) do
-      #IO.inspect System.argv
-
       [action,args] = case length(System.argv) do
         2 -> [Enum.fetch!(System.argv, 1), []]
         3 -> [Enum.fetch!(System.argv, 1), Enum.fetch!(System.argv, 2)]
@@ -37,6 +35,9 @@ defmodule Mix.Tasks.Cedar do
     end
 
     defp execute(action, args) do
+      tgt = String.to_char_list( Application.get_env(:database, :location))
+      :application.set_env(:mnesia, :dir, tgt)
+
       case action do
         "create" -> create args
         "dump" -> dump args

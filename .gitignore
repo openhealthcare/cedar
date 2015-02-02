@@ -4,3 +4,5 @@
 erl_crash.dump
 *.ez
 /Mnesia*
+/cedar_db
+/test_db
