@@ -5,11 +5,6 @@ defdatabase Db do
   #deftable Variable
 
   deftable Variable, [{ :id, autoincrement }, :key, :value, :owner], type: :ordered_set, index: [:key, :owner] do
-
-    def add_variable(key, value, owner) do
-      %Variable{key: key, value: value, owner: owner} |> Variable.write
-    end
-
   end
 
 end
@@ -18,6 +13,18 @@ end
 defmodule Cedar.DbUtil do
   require Db.Variable
   require Exquisite
+
+  def add_variable(key, value, owner) do
+    Amnesia.transaction! do
+      %Db.Variable{key: key, value: value, owner: owner} |> Db.Variable.write
+    end
+  end
+
+  def delete_variable(id) do
+    Amnesia.transaction! do
+      Db.Variable.read!(id) |> Db.Variable.delete
+    end
+  end
 
 
   def resolve_var("@" <> v) do

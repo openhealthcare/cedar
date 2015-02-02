@@ -63,7 +63,7 @@ defmodule Mix.Tasks.Cedar do
 
       IO.puts "Creating initial data ..."
       Amnesia.transaction do
-        Db.Variable.add_variable("admin_email", "support@openhealthcare.org.uk", "CEDAR")
+        Cedar.DbUtil.add_variable("admin_email", "support@openhealthcare.org.uk", "CEDAR")
       end
 
       Amnesia.stop

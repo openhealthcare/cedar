@@ -1,2 +1,2 @@
 When "diagnosis" is "CAP"
-Then Email "david@openhealthcare.org.uk" with "cap_diagnosis"
+Then Email "@admin_email" with "cap_diagnosis"
