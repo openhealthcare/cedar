@@ -20,7 +20,7 @@ defmodule Cedar.DbUtil do
   require Exquisite
 
 
-  def resolve_var(<<"@" :: utf8, v :: binary>>) do
+  def resolve_var("@" <> v) do
     val = Amnesia.transaction! do
       selection = Db.Variable.where key == v,
         select: value
