@@ -14,3 +14,14 @@ To start your CEDAR application you have to:
 Now you can visit `localhost:4000` from your browser.
 
 Later, you can `mix cedar.database delete`
+
+
+### To manage the audit log
+
+#### Purge
+
+```mix audit purge```
+
+#### Compress
+
+```mix audit archive```
