@@ -4,7 +4,6 @@ defmodule Cedar.Audit do
 
   def start_link do
     logdir = Application.get_env(:auditor, :location)
-    log_filename(logdir)
     Logger.info "Audit to #{logdir}"
     pid = spawn fn -> audit logdir end
     {:ok, pid}
@@ -19,16 +18,18 @@ defmodule Cedar.Audit do
     logs/year/month/day/hour/<timestamp>.log
   """
   defp log_filename(logdir) do
+    {_, _, ms} = :erlang.now
     {{year, month, day}, {hour, min, sec}} = DateTime.now
-    uniq = "generate_something_unique"
-    IO.puts "#{logdir}/#{year}/#{month}/#{day}/#{hour}/#{min}_#{sec}_#{uniq}.log"
-    ""
+
+    p = Path.join([logdir, "#{year}", "#{month}", "#{day}", "#{hour}"])
+    {p, "#{min}_#{sec}_#{ms}.log"}
   end
 
   def audit(logdir) do
     receive do
       { :sucess, behaviour, pre, post } ->
-        # Create log_filename()
+        {path, name} = log_filename(logdir)
+
         # Log timestamp and data to file
         nil
       _ ->  nil
