@@ -2,14 +2,8 @@ defmodule Cedar.Matcher.Step do
     use Cedar.Macros
     alias Cedar.Actions, as: Actions
 
+    import Cedar.DbUtil, only: [resolve_var: 1]
 
-  """
-  Attempts to resolve the provided value as a variable
-  or just returns the value itself.
-  """
-  def resolve_var(value) do
-    value
-  end
 
   @doc"""
   For a nested series of JSON objects MAP, find out if there is a

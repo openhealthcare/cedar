@@ -8,6 +8,7 @@ defmodule Cedar.EditorController do
     render conn, "editor.html"
   end
 
+
   def variables(conn, _params) do
 
     vars = Amnesia.transaction! do

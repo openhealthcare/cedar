@@ -1,5 +1,5 @@
 defmodule Cedar.Actions do
-    import Cedar.Matcher.Step, only: [resolve_var: 1]
+    import Cedar.DbUtil, only: [resolve_var: 1]
 
     @moduledoc """
     The functions defined in this module are intended to be 'step'-style
