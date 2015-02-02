@@ -12,10 +12,19 @@ defmodule Cedar do
       worker(Cedar.Decider, []),
     ]
 
+    # Start amnesia and wait for the database to be ready
+    Amnesia.start
+    Db.wait
+
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Cedar.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  def stop do
+    IO.puts "Stopping!"
+    :ok
   end
 
   # Tell Phoenix to update the endpoint configuration

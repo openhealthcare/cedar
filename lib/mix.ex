@@ -46,6 +46,10 @@ defmodule Mix.Tasks.Cedar do
     end
 
     """
+    Creates the new database, by default it'll write it to a folder called
+    Mnesia.nonode@nohost in the current directory, which is fine for now.
+
+    Sets up some basic variables.
     """
     defp create(_args) do
       IO.puts "Creating database ..."
@@ -58,13 +62,15 @@ defmodule Mix.Tasks.Cedar do
 
       IO.puts "Creating initial data ..."
       Amnesia.transaction do
-        Db.Variable.add_variable("admin_email", "support@openhealthcare.org.uk", nil)
+        Db.Variable.add_variable("admin_email", "support@openhealthcare.org.uk", "CEDAR")
       end
 
       Amnesia.stop
     end
 
     """
+    Loads a database from a previously dumped database.  You need to create the database
+    before you can load into it.
     """
     defp load(filename) do
       IO.puts "Loading the database from #{filename}"
@@ -79,6 +85,7 @@ defmodule Mix.Tasks.Cedar do
     end
 
     """
+    Dumps all of the database into the filename specified.
     """
     defp dump(filename) do
       IO.puts "Dumping the database to #{filename}"
@@ -93,6 +100,8 @@ defmodule Mix.Tasks.Cedar do
     end
 
     """
+    Deletes the database. Empties the directory, but leaves the
+    directory itself in place.
     """
     defp delete(_args) do
       IO.puts "Deleting database ..."

@@ -1,5 +1,6 @@
 defmodule Cedar.EditorController do
   use Phoenix.Controller
+  require Amnesia
 
   plug :action
 
@@ -8,7 +9,20 @@ defmodule Cedar.EditorController do
   end
 
   def variables(conn, _params) do
-    render conn, "variables.html"
+
+    vars = Amnesia.transaction! do
+      Enum.group_by(~w{ant buffalo cat dingo}, &String.length/1)
+
+      Enum.map(Db.Variable.stream |> Enum.reverse, fn(v) ->
+        v
+      end) |> Enum.group_by fn (x)->
+        x.owner
+      end
+    end
+
+    headers = Dict.keys(vars)
+
+    render conn, "variables.html", variables: vars, headers: headers
   end
 
 end

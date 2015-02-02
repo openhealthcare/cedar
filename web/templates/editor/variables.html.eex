@@ -12,7 +12,25 @@
     <p>Creating "variables" allows you to use them in place of strings when you are creating rules. It is easier to use <strong>@all_email</strong> than to type out the email addresses each time.</p>
   </div>
 
+  <form action="" method="POST" class="form">
 
+  <%= for header <- @headers do %>
+    <legend><%= header %></legend>
+    <%= for var <- Map.get(@variables, header) do %>
+      <div class="form-group row">
+        <div class="col-md-6">
+            <label for="k_<%= var.id %>">Key</label>
+            <input class="form-control" type="text" name="k_<%= var.id %>" value="<%= var.key %>"/>
+        </div>
+        <div class="col-md-6">
+            <label for="v_<%= var.id %>">Value</label>
+            <input class="form-control" type="text" name="v_<%= var.id %>" value="<%= var.value %>"/>
+        </div>
+      </div>
+    <% end %>
 
+  <% end %>
+
+  </form>
 
 </div>
