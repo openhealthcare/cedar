@@ -10,7 +10,7 @@ defmodule Cedar.Audit do
     pid = spawn fn -> audit logdir end
     Phoenix.PubSub.subscribe(pid, "audit")
 
-    #Phoenix.PubSub.broadcast "audit", {:success, "Startup", %{}, %{}, ""}
+    Phoenix.PubSub.broadcast "audit", {:fail, "Startup", %{}, %{}, ""}
     {:ok, pid}
   end
 
@@ -46,12 +46,12 @@ defmodule Cedar.Audit do
   """
   def audit(logdir) do
     receive do
-      { :success, behaviour, pre, post, endpoint } ->
+      { retcode, behaviour, pre, post, endpoint } ->
         {path, name} = log_filename(logdir)
         File.mkdir_p(path)
 
         # Log timestamp and data to file
-        {:ok, blob} = get_map(true, behaviour, pre, post, endpoint)
+        {:ok, blob} = get_map(retcode == :success, behaviour, pre, post, endpoint)
         File.write(Path.join([path, name]), blob)
       _ ->  nil
     end
