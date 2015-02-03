@@ -12,7 +12,6 @@ defmodule Cedar.Matcher do
                   success = false
                   false   # Abort (the take_while)
                 :ok ->
-                  IO.puts "MATCH!"
                   true
             end
         end

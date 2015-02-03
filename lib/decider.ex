@@ -1,5 +1,4 @@
 defmodule Cedar.Decider do
-  alias Poison, as: JSON
   alias Cedar.Actions.Email, as: Email
   alias Cedar.Actions.ReturnToSender, as: ReturnToSender
 
@@ -13,7 +12,12 @@ defmodule Cedar.Decider do
   Perform BEHAVIOUR for ACTION with PRE and POST, returning to ENDPOINT as required
   """
   def behave(behaviour, action, {pre, post, endpoint}) do
-    Cedar.Matcher.process_block behaviour, action, {pre, post}
+    success = Cedar.Matcher.process_block behaviour, action, {pre, post}
+    case success do
+      :success -> Phoenix.PubSub.broadcast "audit", {:success, behaviour, pre, post, endpoint}
+      :fail  -> Phoenix.PubSub.broadcast "audit", {:fail, behaviour, pre, post, endpoint}
+    end
+    success
   end
 
   @doc"""
