@@ -14,8 +14,8 @@ defmodule Cedar.Decider do
   def behave(behaviour, action, {pre, post, endpoint}) do
     success = Cedar.Matcher.process_block behaviour, action, {pre, post}
     case success do
-      :success -> Phoenix.PubSub.broadcast "audit", {:success, behaviour, pre, post, endpoint}
-      :fail  -> Phoenix.PubSub.broadcast "audit", {:fail, behaviour, pre, post, endpoint}
+      true   -> Phoenix.PubSub.broadcast "audit", {:success, behaviour, pre, post, endpoint}
+      false  -> Phoenix.PubSub.broadcast "audit", {:fail, behaviour, pre, post, endpoint}
     end
     success
   end
