@@ -30,6 +30,11 @@ defmodule Cedar.Audit do
     {p, "#{min}_#{sec}_#{ms}.log"}
   end
 
+  """
+  Convert all of the arguments into a map where the keys have the same
+  name as the params. Almost certainly a cleaner way of doing this.
+  TODO: Investigate nicer way...
+  """
   defp get_map(success, behaviour, pre, post, endpoint ) do
     m = %{
           "success" => success,
