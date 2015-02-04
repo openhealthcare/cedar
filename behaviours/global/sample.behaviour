@@ -1,2 +1,2 @@
-When "diagnosis" is "CAP"
-Then Email "@admin_email" with "cap_diagnosis"
+When "diagnosis.condition" is "CAP"
+Then Email "david@deadpansincerity.com" with "cap_diagnosis"
