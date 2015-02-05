@@ -25,3 +25,8 @@ Later, you can `mix cedar.database delete`
 #### Compress
 
 ```mix audit archive```
+
+### Email settings
+
+In order to actually send emails with MAILGUN, you'll need to set the
+```MAILGUN_KEY``` environment variable to your API key.
