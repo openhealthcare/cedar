@@ -2,12 +2,15 @@ defmodule Cedar.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :cedar,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     elixirc_paths: ["lib", "web"],
-     compilers: [:phoenix] ++ Mix.compilers,
-     deps: deps]
+    [
+        app: :cedar,
+        version: "0.0.1",
+        elixir: "~> 1.0",
+        elixirc_paths: ["lib", "web"],
+        compilers: [:phoenix] ++ Mix.compilers,
+        deps: deps,
+        external_actions: external_actions(Mix.env)  
+    ]
   end
 
   # Configuration for the OTP application
@@ -31,4 +34,8 @@ defmodule Cedar.Mixfile do
       {:amnesia, git: "git://github.com/meh/amnesia.git"}
     ]
   end
+
+  defp external_actions(:test), do: false
+  defp external_actions(_), do: true
+
 end
