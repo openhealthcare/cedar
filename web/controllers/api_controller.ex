@@ -40,7 +40,9 @@ defmodule Cedar.Api01Controller do
     render conn, "change.html"
   end
 
-  def change(conn, %{"pre" => pre, "post" => post, "endpoint" => endpoint}) do
+  def change(conn, %{"pre" => pre, "post" => post, "endpoint" => endpoint}) do    
+    {status, pre}  = Poison.decode(pre)
+    {status, post} = Poison.decode(post)
     Phoenix.PubSub.broadcast "decision", {:change , pre: pre, post: post, endpoint: endpoint}
     json conn, %{:success => "We got your change. We'll be in touch."}
   end
