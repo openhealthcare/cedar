@@ -31,7 +31,7 @@ defmodule Cedar.Actions do
 
     def email(behaviour, [recipient, :with, content], {action, pre, post}) do
         IO.puts "email action"
-        contents = EEx.eval_file template(behaviour, content), [pre: pre, post: post]
+        contents = EEx.eval_file template(behaviour, content), [pre: pre, post: post, episode: post]
         Cedar.Actions.Email.send resolve_var(recipient), "Auto Email from CEDAR", contents
     end
 

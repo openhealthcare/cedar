@@ -1,4 +1,3 @@
-
 defmodule Cedar.Matcher do
   require Logger
 
@@ -33,7 +32,6 @@ defmodule Cedar.Matcher do
       # Regex tokenises in such a way that "ward 9" is one token
       params = parse_sentence(sentence)
       [f | args] = params
-
       try do
         apply(Cedar.Matcher.Step, func_name(f), [filename, args, {action, pre, post}] )
       rescue

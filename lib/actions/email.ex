@@ -9,13 +9,11 @@ defmodule Cedar.Actions.Email do
   Send an email to TO, with SUBJECT and BODY
   """
   def send(to, subject, body) do
-    IO.puts "sending"
-
     if @actually_send do
       send_email to: to,
                from: @from,
             subject: subject,
-               body: body
+               text: body
     end
     {:ok, "Sent"}
   end
