@@ -1,7 +1,7 @@
 defmodule Cedar.Matcher do
   require Logger
 
-    def process_block(filename, action, {pre, post}, endpoint) do
+    def process_block(filename, action, {pre, post}, endpoint \\ "") do
         success = true
 
         File.stream!(filename, [:utf8, :read]) |> Enum.take_while fn(x) ->
@@ -28,7 +28,7 @@ defmodule Cedar.Matcher do
         end)
     end
 
-    def process_line(filename, sentence, {action, pre, post}, endpoint) do
+    def process_line(filename, sentence, {action, pre, post}, endpoint \\ "") do
       # Regex tokenises in such a way that "ward 9" is one token
       params = parse_sentence(sentence)
       [f | args] = params
