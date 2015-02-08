@@ -163,3 +163,12 @@ body {
   padding: 8px;
   width: 33%;
 }
+
+.year-label {
+  font-size: 1.3em;
+  margin-right: 10px;
+}
+
+.year-label a {
+  color: white;
+}

@@ -19,6 +19,11 @@ defmodule Cedar.Router do
     get "/editor/rules", EditorController, :editor
     get "/editor/variables", EditorController, :variables
     get "/status", StatusController, :index
+
+    get "/status/:year", StatusController, :year
+    get "/status/:year/:month", StatusController, :month
+    get "/status/:year/:month/:day", StatusController, :day
+
     get "/api/v0.1/", Api01Controller, :index
   end
 

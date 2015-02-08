@@ -11,7 +11,74 @@
     <h1>Status</h1>
   </div>
 
+  <h2>Years</h2>
+  <div class="fluid-row">
+  <%= for year <- @years do %>
+    <%= if year == @year do %>
+        <div class="year-label col-md-1 label label-success "><%= @year %></div>
+    <% end %>
 
+    <%= if year != @year do %>
+        <a href="/status/<%= year %>">
+            <span class="year-label col-md-1 label label-default">
+                <%= year %>
+            </span>
+        </a>
+    <% end %>
+
+  <% end %>
+  </div>
+
+  <div class="clearfix"></div>
+  <hr/>
+
+  <%= if @months do %>
+  <h2>Months</h2>
+  <div class="fluid-row">
+    <%= for month <- @months do %>
+
+        <%= if month == @month do %>
+            <div class="year-label col-md-1 label label-success "><%= @month %></div>
+        <% end %>
+
+        <%= if month != @month do %>
+            <a href="/status/<%= @year %>/<%= month %>">
+                <span class="year-label col-md-1 label label-default">
+                <%= month %>
+                </span>
+            </a>
+        <% end %>
+
+
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="clearfix"></div>
+  <hr/>
+
+  <%= if @days do %>
+  <h2>Days</h2>
+  <div class="fluid-row">
+    <%= for day <- @days do %>
+
+        <%= if day == @day do %>
+            <div class="year-label col-md-1 label label-success "><%= @day %></div>
+        <% end %>
+
+        <%= if day != @day do %>
+            <a href="/status/<%= @year %>/<%= @month %>/<%= day %>">
+                <span class="year-label col-md-1 label label-default">
+                <%= day %>
+                </span>
+            </a>
+        <% end %>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="clearfix"></div>
+  <hr/>
 
 
 </div>
