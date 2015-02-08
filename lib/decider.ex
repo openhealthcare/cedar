@@ -12,7 +12,7 @@ defmodule Cedar.Decider do
   Perform BEHAVIOUR for ACTION with PRE and POST, returning to ENDPOINT as required
   """
   def behave(behaviour, action, {pre, post, endpoint}) do
-    success = Cedar.Matcher.process_block behaviour, action, {pre, post}
+    success = Cedar.Matcher.process_block behaviour, action, {pre, post}, endpoint
     case success do
       true   -> Phoenix.PubSub.broadcast "audit", {:success, behaviour, pre, post, endpoint}
       false  -> Phoenix.PubSub.broadcast "audit", {:fail, behaviour, pre, post, endpoint}

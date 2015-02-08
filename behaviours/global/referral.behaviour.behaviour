@@ -1,0 +1,2 @@
+When "microbiology_test.organism" is "MRSA"
+Then refer to "infectioncontrol"

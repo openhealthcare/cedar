@@ -29,74 +29,74 @@ defmodule Cedar.Matcher.Step do
       fn(x) -> String.contains? x, value end)
   end
 
-  defp provide_result(success, err \\ "", {action, pre, post}) do
+  defp provide_result(success, err \\ "", {action, pre, post, endpoint}) do
       case success do
         true ->
-          {:ok, {pre,post}}
+          {:ok, {pre,post, endpoint}}
         false ->
           {:fail, err}
       end
   end
 
-  defrule when_(_behaviour, [key, :is, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :is, value], {action, pre, post, endpoint}) do
       match = json_property_matches key, post, resolve_var(value)
-      provide_result match, "Does not match", {action, pre, post}
+      provide_result match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :is, :not, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :is, :not, value], {action, pre, post, endpoint}) do
       match = json_property_matches key, post, resolve_var(value)
-      provide_result !match, "Does not match", {action, pre, post}
+      provide_result !match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :was, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :was, value], {action, pre, post, endpoint}) do
       match = json_property_matches key, pre, resolve_var(value)
-      provide_result match, "Does not match", {action, pre, post}
+      provide_result match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :was, :not, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :was, :not, value], {action, pre, post, endpoint}) do
       match = json_property_matches key, pre, resolve_var(value)
-      provide_result !match, "Does not match", {action, pre, post}
+      provide_result !match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :did, :contain, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :did, :contain, value], {action, pre, post, endpoint}) do
     match = json_property_contains key, pre, resolve_var(value)
-    provide_result match, "Does not match", {action, pre, post}
+    provide_result match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :did, :not, :contain, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :did, :not, :contain, value], {action, pre, post, endpoint}) do
     match = json_property_contains key, pre, resolve_var(value)
-    provide_result !match, "Does not match", {action, pre, post}
+    provide_result !match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :contains, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :contains, value], {action, pre, post, endpoint}) do
     match = json_property_contains key, post, resolve_var(value)
-    provide_result match, "Does not match", {action, pre, post}
+    provide_result match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :does, :not, :contain, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :does, :not, :contain, value], {action, pre, post, endpoint}) do
     match = json_property_contains key, post, resolve_var(value)
-    provide_result !match, "Does not match", {action, pre, post}
+    provide_result !match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [key, :changed, :to, value], {action, pre, post}) do
+  defrule when_(_behaviour, [key, :changed, :to, value], {action, pre, post, endpoint}) do
     was = json_property_matches( key, pre, resolve_var(value))
     is = json_property_matches key, post, resolve_var(value)
     match = !was and is
-    provide_result match, "Does not match", {action, pre, post}
+    provide_result match, "Does not match", {action, pre, post, endpoint}
   end
 
-  defrule when_(_behaviour, [:admitted, :to, ward], {:admit, pre, post}) do
+  defrule when_(_behaviour, [:admitted, :to, ward], {:admit, pre, post, endpoint}) do
     match = json_property_matches "location.ward", post, resolve_var(ward)
-    provide_result match, "Does not match", {:admit, pre, post}
+    provide_result match, "Does not match", {:admit, pre, post, endpoint}
   end
 
-  # def when_(behaviour, [], {action, pre, post}) do
+  # def when_(behaviour, [], {action, pre, post, endpoint}) do
   # end
 
-  defrule then(_behaviour, [h|t], {action, pre, post}) do
+  defrule then(_behaviour, [h|t], {action, pre, post, endpoint}) do
       # We want to apply the action h and pass t as the args
       try do
-        apply(Actions, h, [_behaviour, t, {action, pre, post}])
+        apply(Actions, h, [_behaviour, t, {action, pre, post, endpoint}])
       rescue
         e -> IO.inspect e
       end
