@@ -55,9 +55,12 @@ defmodule Cedar.Audit do
         File.mkdir_p(path)
 
         # Log timestamp and data to file
-        blob = get_map(retcode == :success, behaviour, pre, post, endpoint)
-        File.write(Path.join([path, name]), JSON.encode(blob))
-        Phoenix.PubSub.broadcast("audit:all", blob)
+        data_dict = get_map(retcode == :success, behaviour, pre, post, endpoint)
+        File.write(Path.join([path, name]), JSON.encode(data_dict))
+
+        # As soon as the broadcasts are back and working with the Channel re-work
+        # fix this.
+        #Phoenix.PubSub.broadcast("audit:all", "new:message", data_dict)
       _ ->  nil
     end
     audit logdir

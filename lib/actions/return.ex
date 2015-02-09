@@ -1,6 +1,6 @@
 defmodule Cedar.Actions.ReturnToSender do
 
-  @actually_send Mix.Project.config[:external_actions]
+  @actually_send Application.get_env(:cedar, :external_actions)
 
   @doc"""
   Send a MESSAGE to ENDPOINT

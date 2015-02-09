@@ -30,8 +30,6 @@ defmodule Cedar.Decider do
         post  = params[:post]
         endpoint = params[:endpoint]
 
-        IO.puts "Called change for endpoint #{endpoint}"
-
         Path.wildcard("behaviours/*/*.behaviour")
           |> Enum.map(&(behave &1, :change, {pre, post, endpoint}))
 

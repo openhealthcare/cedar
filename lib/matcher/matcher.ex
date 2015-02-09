@@ -3,7 +3,6 @@ defmodule Cedar.Matcher do
 
     def process_block(filename, action, {pre, post}, endpoint \\ "") do
         success = true
-
         File.stream!(filename, [:utf8, :read]) |> Enum.take_while fn(x) ->
             {ok, msg} = process_line(filename, String.strip(x), {action, pre, post}, endpoint)
             case ok do
