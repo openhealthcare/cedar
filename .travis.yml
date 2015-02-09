@@ -1,0 +1,6 @@
+language: elixir
+otp_release:
+  - 17.4
+script:
+  - mix cedar.database create
+  - mix test
