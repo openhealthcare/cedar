@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/openhealthcare/cedar.svg?branch=master)](https://travis-ci.org/openhealthcare/cedar)
+
 Something somewhere between [this](http://xkcd.com/518/), IFTTT and Yahoo Pipes, right? I mean eventually, not right now. And more the former than the latter.
 
 
