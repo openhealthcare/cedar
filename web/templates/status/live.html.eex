@@ -1,0 +1,22 @@
+
+
+<h1>Live audit stream</h1>
+
+<div id="messages">
+
+</div>
+
+
+<script type="text/javascript">
+var socket = new Phoenix.Socket("ws://" + location.host + "/ws");
+var $messages = $("#messages");
+
+socket.join("audit:all", {}, function(chan){
+  console.log("Connected to " + chan )
+
+  chan.on("new:message", function(msg){
+    $messages.append("<br/>[" + msg.success + "] ")
+  });
+
+});
+</script>

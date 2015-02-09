@@ -9,8 +9,8 @@ defmodule Cedar.StatusController do
     redirect conn, to: "/status/2015"
   end
 
-  def live do
-    # TODO: Get live updates
+  def live(conn, _params) do
+    render conn, "live.html"
   end
 
   def year(conn, %{"year" => year}) do

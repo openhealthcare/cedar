@@ -1,6 +1,10 @@
 defmodule Cedar.Router do
   use Phoenix.Router
 
+  socket "/ws", Cedar do
+    channel "audit:*", AuditChannel
+  end
+
   pipeline :browser do
     plug :accepts, ~w(html)
     plug :fetch_session
@@ -20,6 +24,7 @@ defmodule Cedar.Router do
     get "/editor/variables", EditorController, :variables
     get "/status", StatusController, :index
 
+    get "/status/live", StatusController, :live
     get "/status/:year", StatusController, :year
     get "/status/:year/:month", StatusController, :month
     get "/status/:year/:month/:day", StatusController, :day

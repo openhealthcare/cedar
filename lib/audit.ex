@@ -36,13 +36,12 @@ defmodule Cedar.Audit do
   TODO: Investigate nicer way...
   """
   defp get_map(success, behaviour, pre, post, endpoint ) do
-    m = %{
-          "success" => success,
-          "behaviour" => behaviour,
-          "pre" => pre,
-          "post" => post
-        }
-    JSON.encode(m)
+    %{
+        "success" => success,
+        "behaviour" => behaviour,
+        "pre" => pre,
+        "post" => post
+    }
   end
 
   @doc  """
@@ -56,8 +55,9 @@ defmodule Cedar.Audit do
         File.mkdir_p(path)
 
         # Log timestamp and data to file
-        {:ok, blob} = get_map(retcode == :success, behaviour, pre, post, endpoint)
-        File.write(Path.join([path, name]), blob)
+        blob = get_map(retcode == :success, behaviour, pre, post, endpoint)
+        File.write(Path.join([path, name]), JSON.encode(blob))
+        Phoenix.PubSub.broadcast("audit:all", blob)
       _ ->  nil
     end
     audit logdir
