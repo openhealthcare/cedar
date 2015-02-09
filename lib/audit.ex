@@ -22,12 +22,12 @@ defmodule Cedar.Audit do
 
     logs/year/month/day/hour/<timestamp>.log
   """
-  defp log_filename(logdir) do
+  defp log_filename(logdir, id) do
     {_, _, ms} = :erlang.now
     {{year, month, day}, {hour, min, sec}} = DateTime.now
 
     p = Path.join([logdir, "#{year}", "#{month}", "#{day}", "#{hour}"])
-    {p, "#{min}_#{sec}_#{ms}.log"}
+    {p, "#{min}_#{sec}_#{id}.log"}
   end
 
   """
@@ -50,14 +50,15 @@ defmodule Cedar.Audit do
   """
   def audit(logdir) do
     receive do
-      { retcode, behaviour, pre, post, endpoint } ->
-        {path, name} = log_filename(logdir)
+      { retcode, behaviour, pre, post, endpoint, id } ->
+        {path, name} = log_filename(logdir, id)
         File.mkdir_p(path)
 
         # Log timestamp and data to file
         data_dict = get_map(retcode == :success, behaviour, pre, post, endpoint)
-        File.write(Path.join([path, name]), JSON.encode(data_dict))
-
+        {:ok, encoded} = JSON.encode(data_dict)
+        File.write!(Path.join([path, name]), "#{encoded}\r\n", [:append])
+        IO.puts "Wrote log entry to #{Path.join([path, name])}"
         # As soon as the broadcasts are back and working with the Channel re-work
         # fix this.
         #Phoenix.PubSub.broadcast("audit:all", "new:message", data_dict)

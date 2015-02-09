@@ -9,7 +9,7 @@ defmodule Cedar.Mixfile do
         elixirc_paths: ["lib", "web"],
         compilers: [:phoenix] ++ Mix.compilers,
         deps: deps,
-        external_actions: external_actions(Mix.env)  
+        external_actions: external_actions(Mix.env)
     ]
   end
 
@@ -29,7 +29,7 @@ defmodule Cedar.Mixfile do
      {:cowboy, "~> 1.0"},
       {:mailgun, "~> 0.0.1"},
       {:httpoison, "~> 0.6"},
-      {:twilio, git: "git://github.com/openhealthcare/twilio_erlang.git"},
+      {:uuid, "~> 0.1.5"},
       {:exrm, "~> 0.14.16"},
       {:amnesia, git: "git://github.com/meh/amnesia.git"}
     ]
