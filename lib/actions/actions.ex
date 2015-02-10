@@ -37,7 +37,7 @@ defmodule Cedar.Actions do
 
     def broadcast(behaviour, [msg], {action, pre, post, endpoint}) do
         IO.puts "broadcast action"
-
+        Phoenix.Channel.broadcast("broadcast", "new:event", %{"event": msg})
         {:ok, "Sent"}
     end
 

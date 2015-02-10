@@ -3,6 +3,7 @@ defmodule Cedar.Router do
 
   socket "/ws", Cedar do
     channel "audit:all", AuditChannel
+    channel "broadcast", BroadcastChannel
   end
 
   pipeline :browser do
