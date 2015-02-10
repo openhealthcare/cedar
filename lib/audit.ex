@@ -2,6 +2,7 @@ defmodule Cedar.Audit do
   alias Poison, as: JSON
   require Logger
   use Continuum
+  require Cedar.AuditChannel
 
   def start_link do
     logdir = Application.get_env(:auditor, :location)
@@ -35,12 +36,13 @@ defmodule Cedar.Audit do
   name as the params. Almost certainly a cleaner way of doing this.
   TODO: Investigate nicer way...
   """
-  defp get_map(success, behaviour, pre, post, endpoint ) do
+  defp get_map(success, behaviour, pre, post, endpoint, id ) do
     %{
         "success" => success,
         "behaviour" => behaviour,
         "pre" => pre,
-        "post" => post
+        "post" => post,
+        "id" => id,
     }
   end
 
@@ -55,13 +57,13 @@ defmodule Cedar.Audit do
         File.mkdir_p(path)
 
         # Log timestamp and data to file
-        data_dict = get_map(retcode == :success, behaviour, pre, post, endpoint)
+        data_dict = get_map(retcode == :success, behaviour, pre, post, endpoint, id)
         {:ok, encoded} = JSON.encode(data_dict)
         File.write!(Path.join([path, name]), "#{encoded}\r\n", [:append])
         IO.puts "Wrote log entry to #{Path.join([path, name])}"
-        # As soon as the broadcasts are back and working with the Channel re-work
-        # fix this.
-        #Phoenix.PubSub.broadcast("audit:all", "new:message", data_dict)
+
+        # Broadcast audit log to listeners
+        Phoenix.Channel.broadcast("audit:all", "new:message", data_dict)
       _ ->  nil
     end
     audit logdir

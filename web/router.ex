@@ -2,7 +2,7 @@ defmodule Cedar.Router do
   use Phoenix.Router
 
   socket "/ws", Cedar do
-    channel "audit:*", AuditChannel
+    channel "audit:all", AuditChannel
   end
 
   pipeline :browser do
