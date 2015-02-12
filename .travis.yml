@@ -5,3 +5,5 @@ otp_release:
 script:
   - mix cedar.database create
   - mix test
+notifications:
+  slack: ohcuk:6spaME3CB7f2PGrMAcklYWqp  
