@@ -29,7 +29,7 @@ defmodule Cedar.Matcher.Step do
       fn(x) -> String.contains? x, value end)
   end
 
-  defp provide_result(success, err \\ "", {action, pre, post, endpoint}) do
+  defp provide_result(success, err \\ "", {_action, pre, post, endpoint}) do
       case success do
         true ->
           {:ok, {pre,post, endpoint}}

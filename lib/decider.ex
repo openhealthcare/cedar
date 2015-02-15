@@ -1,10 +1,8 @@
 defmodule Cedar.Decider do
-  alias Cedar.Actions.Email, as: Email
-  alias Cedar.Actions.ReturnToSender, as: ReturnToSender
 
   def start_link do
     sub = spawn_link &(decide/0)
-    Phoenix.PubSub.subscribe(sub, "decision")
+    Phoenix.PubSub.subscribe(Cedar.PubSub, sub, "decision")
     {:ok, sub}
   end
 
@@ -14,8 +12,8 @@ defmodule Cedar.Decider do
   def behave(behaviour, action, {pre, post, endpoint}, id \\ "") do
     success = Cedar.Matcher.process_block behaviour, action, {pre, post}, endpoint
     case success do
-      true   -> Phoenix.PubSub.broadcast "audit", {:success, behaviour, pre, post, endpoint, id}
-      false  -> Phoenix.PubSub.broadcast "audit", {:fail, behaviour, pre, post, endpoint, id}
+      true   -> Phoenix.PubSub.broadcast Cedar.PubSub, "audit", {:success, behaviour, pre, post, endpoint, id}
+      false  -> Phoenix.PubSub.broadcast Cedar.PubSub, "audit", {:fail, behaviour, pre, post, endpoint, id}
     end
     success
   end

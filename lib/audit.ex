@@ -9,9 +9,9 @@ defmodule Cedar.Audit do
     Logger.info "Audit to #{logdir}"
 
     pid = spawn fn -> audit logdir end
-    Phoenix.PubSub.subscribe(pid, "audit")
+    Phoenix.PubSub.subscribe(Cedar.PubSub, pid, "audit")
 
-    Phoenix.PubSub.broadcast "audit", {:fail, "Startup", %{}, %{}, ""}
+    Phoenix.PubSub.broadcast Cedar.PubSub,"audit", {:fail, "Startup", %{}, %{}, ""}
     {:ok, pid}
   end
 
@@ -24,7 +24,6 @@ defmodule Cedar.Audit do
     logs/year/month/day/hour/<timestamp>.log
   """
   defp log_filename(logdir, id) do
-    {_, _, ms} = :erlang.now
     {{year, month, day}, {hour, min, sec}} = DateTime.now
 
     p = Path.join([logdir, "#{year}", "#{month}", "#{day}", "#{hour}"])
@@ -36,7 +35,7 @@ defmodule Cedar.Audit do
   name as the params. Almost certainly a cleaner way of doing this.
   TODO: Investigate nicer way...
   """
-  defp get_map(success, behaviour, pre, post, endpoint, id ) do
+  defp get_map(success, behaviour, pre, post, _endpoint, id ) do
     %{
         "success" => success,
         "behaviour" => behaviour,
@@ -63,7 +62,7 @@ defmodule Cedar.Audit do
         IO.puts "Wrote log entry to #{Path.join([path, name])}"
 
         # Broadcast audit log to listeners
-        Phoenix.Channel.broadcast("audit:all", "new:message", data_dict)
+        Cedar.Endpoint.broadcast("audit:all", "new:message", data_dict)
       _ ->  nil
     end
     audit logdir

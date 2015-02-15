@@ -12,7 +12,7 @@
   "idna": {:hex, :idna, "1.0.2"},
   "mailgun": {:hex, :mailgun, "0.0.2"},
   "mochiweb": {:git, "https://github.com/mochi/mochiweb.git", "52ddb5d93d5509cfedfb7003d3601b98a4ac370f", []},
-  "phoenix": {:git, "git://github.com/phoenixframework/phoenix.git", "c2bac8138b11065a5224cb79d2ef397e917f562c", []},
+  "phoenix": {:hex, :phoenix, "0.9.0"},
   "plug": {:hex, :plug, "0.10.0"},
   "poison": {:hex, :poison, "1.3.0"},
   "ranch": {:hex, :ranch, "1.0.0"},
