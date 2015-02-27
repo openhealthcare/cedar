@@ -1,6 +1,10 @@
 defmodule Cedar.Matcher do
   require Logger
 
+    @doc """
+    Given a filename, an action and some pre and post data this function attempts to process
+    the sentences in the filename to determine whether any action needs to be taken.
+    """
     def process_block(filename, action, {pre, post}, endpoint \\ "") do
       try do
         File.stream!(filename, [:utf8, :read]) |> Enum.take_while fn(x) ->
@@ -21,6 +25,13 @@ defmodule Cedar.Matcher do
       end
     end
 
+    @doc """
+    Parses an individual sentence and turns a string like
+      When "pre-key" is "value"
+    into
+      :when "pre-key" :is "value"
+    ready for processing with apply()/3
+    """
     def parse_sentence(sentence) do
       Enum.map(Regex.scan(~r/[^\s"]+|"([^"]*)"/, sentence), &(hd(&1)))
          |> Enum.map(fn(x) ->
@@ -31,6 +42,10 @@ defmodule Cedar.Matcher do
         end)
     end
 
+    @doc """
+    Attempts to turn a sentence into a function call, returning {:fail, reason} if
+    it failed to do so, and {:ok, func_name} if all was okay.
+    """
     def process_line(filename, sentence, {action, pre, post}, endpoint \\ "") do
       # Regex tokenises in such a way that "ward 9" is one token
       params = parse_sentence(sentence)
@@ -40,7 +55,7 @@ defmodule Cedar.Matcher do
       rescue
         _ ->
           {:fail, "Failed to apply sentence: #{sentence}"}
-       end
+      end
     end
 
     @doc """
