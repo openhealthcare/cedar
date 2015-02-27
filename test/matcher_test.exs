@@ -20,6 +20,11 @@ defmodule MatcherTest do
     assert(success == true)
   end
 
+  test "Match non-existent behaviour" do
+    success = Cedar.Matcher.process_block("nosuch.behaviour", @_, {@empty, @full})
+    assert(success == false)
+  end
+
   test "basic match for is" do
     pre = %{}
     post = %{ "key" => "friday"}

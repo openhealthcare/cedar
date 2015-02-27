@@ -15,14 +15,13 @@ defmodule MapTraversal do
     applies the str_func (to non-list results), or the list_func
     to list results in order to perform comparisons.
     """
-    def map_apply(key, map, value, list_func, str_func) do
+    def map_apply(key, map, _value, list_func, str_func) do
         result = find_value key, map
         case result do
           result when is_list(result) ->
             list_func.(result)
           result ->
             str_func.(result)
-          _ -> false
         end
     end
 
@@ -35,13 +34,13 @@ defmodule MapTraversal do
         data[k]
     end
 
-    defp find([h|t], data) when is_list(data) do
+    defp find([h|_], data) when is_list(data) do
         x = Enum.map data, fn(x) -> find(h, x) end
         # Strip nils, not every item in the list might have the key
         Enum.filter x, fn(x) -> x end
     end
 
-    defp find(k, data) do
+    defp find(_, data) do
         data
     end
 

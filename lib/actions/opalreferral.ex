@@ -11,17 +11,17 @@ defmodule Cedar.Actions.OpalReferral do
              "episode" => to_string(episode_id),
              "target"     => target
          }
-    
-    {status, body} = Poison.encode(data)
-    
-    HTTPoison.start        
+
+    {_, body} = Poison.encode(data)
+
+    HTTPoison.start
     case HTTPoison.post(referral_url, body ) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body} } ->
         IO.puts body
         {:ok, 200}
-      {:ok, %HTTPoison.Response{status_code: 404, body: body} } ->
+      {:ok, %HTTPoison.Response{status_code: 404, body: _} } ->
         {:fail, "Not found :("}
-      {:ok, %HTTPoison.Response{status_code: status, body: body} } ->
+      {:ok, %HTTPoison.Response{status_code: status, body: _} } ->
         IO.puts "Failed with #{status}"
         {:fail, "Unexpected status code: #{status}"}
       {:error, err} ->
@@ -31,7 +31,7 @@ defmodule Cedar.Actions.OpalReferral do
         IO.puts "Don't know what this is: #{inspect thing}"
         {:fail, "Unknokwn thing"}
     end
-    
+
   end
-  
+
 end

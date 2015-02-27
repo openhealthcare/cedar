@@ -2,19 +2,23 @@ defmodule Cedar.Matcher do
   require Logger
 
     def process_block(filename, action, {pre, post}, endpoint \\ "") do
-        success = true
+      try do
         File.stream!(filename, [:utf8, :read]) |> Enum.take_while fn(x) ->
             {ok, _msg} = process_line(filename, String.strip(x), {action, pre, post}, endpoint)
-            case ok do
+             case ok do
                 :fail ->
-                  success = false
                   false   # Abort (the take_while)
                 :ok ->
                   true
             end
         end
 
-        success
+        true
+      catch
+        e -> Logger.error(e)
+      rescue
+        _ -> false
+      end
     end
 
     def parse_sentence(sentence) do
