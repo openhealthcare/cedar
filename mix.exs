@@ -18,7 +18,7 @@ defmodule Cedar.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Cedar, []},
-     applications: [:phoenix, :cowboy, :logger]]
+     applications: [:phoenix, :cowboy, :logger, :httpoison]]
   end
 
   # Specifies your project dependencies

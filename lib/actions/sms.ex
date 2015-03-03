@@ -19,10 +19,7 @@ defmodule Cedar.Actions.SMS do
     url = @txtlocal_server <> URI.encode_query(query)
 
     # Make GET request to url
-    HTTPoison.start
     HTTPoison.get(url)
-
-    # TODO: Stop poison? Do we need to start it? Can it not start itself?
   end
 
   defp clean("0"<>number) do
