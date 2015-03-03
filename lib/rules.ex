@@ -6,7 +6,7 @@ defmodule Cedar.Rules do
     else
       [h | t] = rules
       [dir | behaviour] = tl(String.split(h, "/")) # lose the behaviours folder
-      IO.puts "Folder #{inspect dir}, #{inspect behaviour}"
+
       if Dict.has_key? tree, dir do
         val = tree[dir] ++ behaviour
         tree = Dict.put tree, dir, val

@@ -85,6 +85,20 @@ defmodule Cedar.Matcher.Step do
     provide_result match, "Does not match", {action, pre, post, endpoint}
   end
 
+  defrule when_(_behaviour, [key, :changed, :from, value], {action, pre, post, endpoint}) do
+    was = json_property_matches( key, pre, resolve_var(value))
+    is = json_property_matches key, post, resolve_var(value)
+    match = was and !is
+    provide_result match, "Does not match", {action, pre, post, endpoint}
+  end
+
+  defrule when_(_behaviour, [key, :changed, :from, value, :to, new_value], {action, pre, post, endpoint}) do
+    was = json_property_matches( key, pre, resolve_var(value))
+    is = json_property_matches key, post, resolve_var(new_value)
+    match = was and is
+    provide_result match, "Does not match", {action, pre, post, endpoint}
+  end
+
   defrule when_(_behaviour, [:admitted, :to, ward], {:admit, pre, post, endpoint}) do
     match = json_property_matches "location.ward", post, resolve_var(ward)
     provide_result match, "Does not match", {:admit, pre, post, endpoint}

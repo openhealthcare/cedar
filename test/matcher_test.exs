@@ -13,6 +13,7 @@ defmodule MatcherTest do
   @fb "foo/bar.behaviour"
   @empty %{}
   @full %{ "diagnosis" =>  [ %{ "name" => "CAP" }, %{ "name" => "GORD" } ] }
+  @full_cured %{ "diagnosis" =>  [ %{ "name" => "CURED" } ] }
   @_ :action
 
   test "Match on global behaviour" do
@@ -119,6 +120,22 @@ defmodule MatcherTest do
     assert ok == :ok
 
     {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" changed to "healthy"), {@_, @empty, @full}
+    assert ok == :fail
+  end
+
+  test "basic match for changed from " do
+    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" changed from "CAP"), {@_, @full, @empty}
+    assert ok == :ok
+
+    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" changed from "UNKNOWN"), {@_, @full, @empty}
+    assert ok == :fail
+  end
+
+  test "basic match for changed from something to something else" do
+    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" changed from "CAP" to "CURED"), {@_, @full, @full_cured}
+    assert ok == :ok
+
+    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" changed from "CAP" to "CAP"), {@_, @full, @empty}
     assert ok == :fail
   end
 
