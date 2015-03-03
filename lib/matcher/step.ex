@@ -104,6 +104,15 @@ defmodule Cedar.Matcher.Step do
     provide_result match, "Does not match", {:admit, pre, post, endpoint}
   end
 
+  defrule when_(_behaviour, [kold, :intersects, knew], {action, pre, post, endpoint}) do
+    first = MapTraversal.find_value(kold, post)
+    second = MapTraversal.find_value(knew, post)
+
+    intersection =  Set.intersection(Enum.into(first, HashSet.new),
+                                     Enum.into(second, HashSet.new))
+    provide_result HashSet.size(intersection) > 0, "There is no intersection", {action, pre, post, endpoint}
+  end
+
   # def when_(behaviour, [], {action, pre, post, endpoint}) do
   # end
 

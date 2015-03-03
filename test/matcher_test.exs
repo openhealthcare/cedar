@@ -14,7 +14,12 @@ defmodule MatcherTest do
   @empty %{}
   @full %{ "diagnosis" =>  [ %{ "name" => "CAP" }, %{ "name" => "GORD" } ] }
   @full_cured %{ "diagnosis" =>  [ %{ "name" => "CURED" } ] }
+  @intersection %{ "allergies" =>  [ %{ "name" => "latex" }, %{ "name" => "paracetamol"} ],
+                   "drugs" => [ %{"name" => "morphene"}, %{"name" => "paracetamol"}]}
+  @null_intersection %{ "allergies" =>  [ %{ "name" => "latex" }],
+                        "drugs" => [ %{"name" => "morphene"}, %{"name" => "paracetamol"}]}
   @_ :action
+
 
   test "Match on global behaviour" do
     success = Cedar.Matcher.process_block("behaviours/global/sample.behaviour", @_, {@empty, @full})
@@ -151,6 +156,14 @@ defmodule MatcherTest do
 
   test "invalid sentence sneaking through" do
     {ok, _} = Cedar.Matcher.process_line @fb, "When admitted to Ward 8", {:admit, @empty, %{}}
+    assert ok == :fail
+  end
+
+  test "intersection of two lists has > 1 members" do
+    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "allergies.name" intersects "drugs.name"), {@_, @empty, @intersection}
+    assert ok == :ok
+
+    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "allergies.name" intersects "drugs.name"), {@_, @empty, @null_intersection}
     assert ok == :fail
   end
 
