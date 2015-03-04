@@ -118,6 +118,9 @@ defmodule Cedar.Matcher.Step do
 
   defrule then(_behaviour, [h|t], {action, pre, post, endpoint}) do
       # We want to apply the action h and pass t as the args
+      # TODO: Do this in a separate process so that we're not blocking this
+      # process. It doesn't matter that we're currently blocking, but no need
+      # to keep it alive longer than necessary
       try do
         apply(Actions, h, [_behaviour, t, {action, pre, post, endpoint}])
       rescue

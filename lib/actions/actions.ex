@@ -48,7 +48,8 @@ defmodule Cedar.Actions do
 
     def sms(behaviour, [msg, :to, number], {action, pre, post, endpoint}) do
         IO.puts "sms action"
-
+        # TODO: Actually get a response from the deliver call
+        Cedar.Actions.SMS.deliver([number], msg)
         {:ok, "Sent"}
     end
 
