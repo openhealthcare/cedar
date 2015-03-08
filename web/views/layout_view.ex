@@ -1,3 +1,4 @@
 defmodule Cedar.LayoutView do
-  use Cedar.View
+    use Cedar.Web, :view
+
 end

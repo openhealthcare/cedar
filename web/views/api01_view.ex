@@ -1,3 +1,3 @@
 defmodule Cedar.Api01View do
-  use Cedar.View
+    use Cedar.Web, :view
 end

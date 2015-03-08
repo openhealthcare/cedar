@@ -1,5 +1,5 @@
 defmodule Cedar.EditorController do
-  use Phoenix.Controller
+  use Cedar.Web, :controller
   require Amnesia
 
   plug :action

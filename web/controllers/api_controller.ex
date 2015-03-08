@@ -1,5 +1,5 @@
 defmodule Cedar.Api01Controller do
-  use Phoenix.Controller
+  use Cedar.Web, :controller
 
   plug :action
 

@@ -1,3 +1,4 @@
 defmodule Cedar.PageView do
-  use Cedar.View
+  use Cedar.Web, :view
+
 end

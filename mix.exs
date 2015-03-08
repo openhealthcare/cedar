@@ -25,7 +25,7 @@ defmodule Cedar.Mixfile do
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 0.9.0"},
+    [{:phoenix, "~> 0.10.0"},
      {:cowboy, "~> 1.0"},
       {:mailgun, "~> 0.0.1"},
       {:httpoison, "~> 0.6"},
