@@ -11,7 +11,8 @@ config :cedar, Cedar.Endpoint,
   secret_key_base: "dywFWz8XZvQwGDVA6MA4bllVBBPqtZE8psfnf+7PSCxOsC4sCigQ5/rriKCUfkVR",
   debug_errors: false,
   server: true,
-  pubsub: [adapter: Phoenix.PubSub.PG2, name: Cedar.PubSub]
+  pubsub: [adapter: Phoenix.PubSub.PG2, name: Cedar.PubSub],
+  root: Path.expand("..", __DIR__)
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -11,7 +11,7 @@
 var socket = new Phoenix.Socket("ws://" + location.host + "/ws");
 var $messages = $("#messages");
 
-socket.join("audit:all", {}, function(chan){
+socket.join("audit:all", {}).receive("ok", function(chan){
   console.log("Connected to " + chan )
 
   chan.on("new:message", function(msg){

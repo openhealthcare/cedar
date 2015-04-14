@@ -120,7 +120,10 @@ defmodule Cedar.Matcher.Step do
       # We want to apply the action h and pass t as the args
       # TODO: Do this in a separate process so that we're not blocking this
       # process. It doesn't matter that we're currently blocking, but no need
-      # to keep it alive longer than necessary
+      # to keep it alive longer than necessary. This might mean the action
+      # has to handle it's own logging.
+      # pid = spawn Actions, h, [_behaviour, t, {action, pre, post, endpoint}]
+
       try do
         apply(Actions, h, [_behaviour, t, {action, pre, post, endpoint}])
       rescue

@@ -6,7 +6,7 @@ defmodule Cedar.AuditChannel do
     {:ok, socket}
   end
 
-  def leave(_reason, socket) do
+  def terminate(_reason, socket) do
     {:ok, socket}
   end
 

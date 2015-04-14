@@ -1,6 +1,11 @@
 defmodule Cedar.Endpoint do
   use Phoenix.Endpoint, otp_app: :cedar
 
+  if code_reloading? do
+    plug Phoenix.LiveReloader
+    plug Phoenix.CodeReloader
+  end
+
   # Serve at "/" the given assets from "priv/static" directory
   plug Plug.Static,
     at: "/", from: :cedar,

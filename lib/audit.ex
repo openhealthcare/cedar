@@ -1,7 +1,8 @@
 defmodule Cedar.Audit do
+  use Continuum
+
   alias Poison, as: JSON
   require Logger
-  use Continuum
   require Cedar.AuditChannel
 
   def start_link do
