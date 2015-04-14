@@ -2,7 +2,7 @@ defmodule Cedar.Matcher.Step do
     use Cedar.Macros
     alias Cedar.Actions, as: Actions
 
-    import Cedar.DbUtil, only: [resolve_var: 1]
+    import Cedar.Vars, only: [resolve_var: 1]
 
 
   @doc"""

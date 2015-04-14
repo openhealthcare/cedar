@@ -14,18 +14,6 @@ defmodule Cedar do
       worker(Cedar.Repo, []),
     ]
 
-    # Start amnesia and wait for the database to be ready
-    :application.set_env(:mnesia, :dir, 'cedar_db')
-    Amnesia.start
-    case Db.wait(5000) do
-      {:timeout,  _} ->
-        IO.puts "Can't load the database - PANIC!!"
-        System.halt(1)
-      :ok -> true
-    end
-
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Cedar.Supervisor]
     Supervisor.start_link(children, opts)
   end

@@ -1,14 +1,5 @@
 defmodule MatcherTest do
   use ExUnit.Case
-  require Cedar.DbUtil
-
-  setup_all do
-    Amnesia.Test.start
-    on_exit fn ->
-      Amnesia.Test.stop
-    end
-  end
-
 
   @fb "foo/bar.behaviour"
   @empty %{}
@@ -86,13 +77,6 @@ defmodule MatcherTest do
 
     {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" did contain "death"), {@_, @full, @empty}
     assert ok == :fail
-  end
-
-  test "did contain with variables" do
-    v = Cedar.DbUtil.add_variable("ord_key", "ord", "ross")
-    {ok, _} = Cedar.Matcher.process_line @fb, ~s(When "diagnosis.name" did contain "@ord_key"), {@_, @full, @empty}
-    assert ok == :ok
-    Cedar.DbUtil.delete_variable(v.id)
   end
 
   test "basic match for contains" do

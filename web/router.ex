@@ -22,9 +22,8 @@ defmodule Cedar.Router do
 
     get "/", PageController, :index, as: :pages
     get "/editor/rules", EditorController, :editor
-    get "/editor/variables", EditorController, :variables
-    get "/status", StatusController, :index
 
+    get "/status", StatusController, :index
     get "/status/live", StatusController, :live
     get "/status/:year", StatusController, :year
     get "/status/:year/:month", StatusController, :month

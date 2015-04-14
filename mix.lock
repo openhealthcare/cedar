@@ -1,7 +1,7 @@
 %{"amnedia": {:git, "git://github.com/meh/amnesia.git", "07a30a73ce71e03e56daa7a2855161d81ba20c48", []},
   "amnesia": {:git, "git://github.com/meh/amnesia.git", "07a30a73ce71e03e56daa7a2855161d81ba20c48", []},
   "conform": {:hex, :conform, "0.11.0"},
-  "continuum": {:git, "git://github.com/meh/continuum.git", "4125f9d428971568f16da78cec24fddce18d6eca", []},
+  "continuum": {:git, "https://github.com/meh/continuum", "4125f9d428971568f16da78cec24fddce18d6eca", []},
   "cowboy": {:hex, :cowboy, "1.0.0"},
   "cowlib": {:hex, :cowlib, "1.0.1"},
   "decimal": {:hex, :decimal, "1.1.0"},

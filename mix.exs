@@ -34,7 +34,7 @@ defmodule Cedar.Mixfile do
       {:httpoison, "~> 0.6"},
       {:uuid, "~> 0.1.5"},
       {:exrm, "~> 0.14.16"},
-      {:amnesia, git: "git://github.com/meh/amnesia.git"}
+      {:continuum, git: "https://github.com/meh/continuum"}
     ]
   end
 
