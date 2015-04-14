@@ -1,30 +1,45 @@
-<h2>Listing variables</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-      <th>Owner</th>
+<div class="row">
+  <div class="col-md-8">
+  <h2>Listing variables
+  <%= link "New variable", to: variable_path(@conn, :new), class: "btn btn-primary pull-right" %>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for variable <- @variables do %>
-    <tr>
-      <td><%= variable.key %></td>
-      <td><%= variable.value %></td>
-      <td><%= variable.owner %></td>
+  </h2>
 
-      <td class="text-right">
-        <%= link "Show", to: variable_path(@conn, :show, variable), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: variable_path(@conn, :edit, variable), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: variable_path(@conn, :delete, variable), method: :delete, class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+        <th>Owner</th>
 
-<%= link "New variable", to: variable_path(@conn, :new), class: "btn btn-primary" %>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= for variable <- @variables do %>
+      <tr>
+        <td><%= variable.key %></td>
+        <td><%= variable.value %></td>
+        <td><%= variable.owner %></td>
+
+        <td class="text-right">
+          <%= link "Show", to: variable_path(@conn, :show, variable), class: "btn btn-default btn-xs" %>
+          <%= link "Edit", to: variable_path(@conn, :edit, variable), class: "btn btn-default btn-xs" %>
+          <%= link "Delete", to: variable_path(@conn, :delete, variable), method: :delete, class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= link "New variable", to: variable_path(@conn, :new), class: "btn btn-primary pull-right" %>
+
+  </div>
+  <div class="col-md-4">
+    <h2>Variables</h2>
+    <p>Variables can be used as replacements for values in rules that are frequently used, and possibly long to type, or for values that change frequently, such as the beep number for a specific role.
+  </div>
+</div>
+
+<br/>

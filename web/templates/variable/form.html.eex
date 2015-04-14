@@ -27,5 +27,7 @@
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
+    <%= link "Cancel", class: "btn", to: "/variables" %>
   </div>
+
 <% end %>
