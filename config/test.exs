@@ -6,4 +6,8 @@ config :cedar, Cedar.Endpoint,
 
 config :logger, level: :warn
 
-config :database, location: "test_db"
+config :cedar, Cedar.Repo,
+   adapter: Ecto.Adapters.Postgres,
+   username: "cedar",
+   password: "password",
+   database: "cedar"

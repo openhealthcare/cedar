@@ -1,0 +1,30 @@
+<h2>Listing variables</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Owner</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for variable <- @variables do %>
+    <tr>
+      <td><%= variable.key %></td>
+      <td><%= variable.value %></td>
+      <td><%= variable.owner %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: variable_path(@conn, :show, variable), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: variable_path(@conn, :edit, variable), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: variable_path(@conn, :delete, variable), method: :delete, class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New variable", to: variable_path(@conn, :new), class: "btn btn-primary" %>

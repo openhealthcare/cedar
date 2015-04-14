@@ -11,6 +11,7 @@ defmodule Cedar do
       worker(Cedar.Endpoint, []),
       worker(Cedar.Decider, []),
       worker(Cedar.Audit, []),
+      worker(Cedar.Repo, []),
     ]
 
     # Start amnesia and wait for the database to be ready

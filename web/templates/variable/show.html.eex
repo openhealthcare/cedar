@@ -1,0 +1,22 @@
+<h2>Show variable</h2>
+
+<ul>
+
+  <li>
+    <strong>Key:</strong>
+    <%= @variable.key %>
+  </li>
+
+  <li>
+    <strong>Value:</strong>
+    <%= @variable.value %>
+  </li>
+
+  <li>
+    <strong>Owner:</strong>
+    <%= @variable.owner %>
+  </li>
+
+</ul>
+
+<%= link "Back", to: variable_path(@conn, :index) %>

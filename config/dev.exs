@@ -17,3 +17,8 @@ config :cedar, Cedar.Endpoint,
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
+config :cedar, Cedar.Repo,
+      adapter: Ecto.Adapters.Postgres,
+      username: "cedar",
+      password: "password",
+      database: "cedar"

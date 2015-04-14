@@ -30,13 +30,16 @@ defmodule Cedar.Web do
     quote do
     use Phoenix.Controller
 
+    alias Cedar.Repo
+
     # Import URL helpers from the router
     import Cedar.Router.Helpers
     end
   end
 
   def model do
-    quote do
+     quote do
+      use Ecto.Model
     end
   end
 

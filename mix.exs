@@ -18,16 +18,18 @@ defmodule Cedar.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Cedar, []},
-     applications: [:phoenix, :cowboy, :logger, :httpoison]]
+     applications: [:phoenix, :cowboy, :logger, :httpoison, :ecto]]
   end
 
   # Specifies your project dependencies
   #
   # Type `mix help deps` for examples and options
   defp deps do
-    [{:phoenix, "~> 0.11.0"},
-    {:phoenix_live_reload, "~> 0.3"},
-     {:cowboy, "~> 1.0"},
+    [ {:phoenix, "~> 0.11.0"},
+      {:phoenix_live_reload, "~> 0.3"},
+      {:phoenix_ecto, "~> 0.1"},
+      {:postgrex, ">= 0.0.0"},
+      {:cowboy, "~> 1.0"},
       {:mailgun, "~> 0.0.1"},
       {:httpoison, "~> 0.6"},
       {:uuid, "~> 0.1.5"},
