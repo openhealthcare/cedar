@@ -24,7 +24,13 @@ To create a database (for development) you should do the following:
 
 ```
 createuser cedar -S
+
+# Development
 createdb cedar -O cedar -E utf8
+
+# Tests
+createdb cedar_test -O cedar -E utf8
+
 mix ecto.migrate
 ```
 
