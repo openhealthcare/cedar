@@ -1,3 +1,10 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/variables">Variables</a></li>
+  <li class="active">New</li>
+</ol>
+
+
 <h2>New variable</h2>
 
 <%= render "form.html", changeset: @changeset,

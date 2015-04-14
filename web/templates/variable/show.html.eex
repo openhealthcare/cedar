@@ -1,3 +1,10 @@
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/variables">Variables</a></li>
+  <li class="active"><%= @variable.key %></li>
+</ol>
+
+
 <h2>Show variable</h2>
 
 <ul>
