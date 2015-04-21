@@ -3,7 +3,8 @@ sudo: false
 otp_release:
   - 17.4
 script:
-  - mix cedar.database create
+  - mix ecto.create
+  - mix ecto.migrate
   - mix test
 notifications:
-  slack: ohcuk:6spaME3CB7f2PGrMAcklYWqp  
+  slack: ohcuk:6spaME3CB7f2PGrMAcklYWqp
