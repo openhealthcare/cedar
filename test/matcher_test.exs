@@ -156,7 +156,7 @@ defmodule MatcherTest do
   end
 
   test "made up rule is invalid" do
-    assert not Cedar.Matcher.can_evaluate?("When \"X\" likes \"Y\"")
+    assert not Cedar.Matcher.can_evaluate?(~s(When "X" likes "Y"))
   end
 
   test "rule with extra spaces is still valid" do

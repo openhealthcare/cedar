@@ -38,9 +38,17 @@ defmodule Cedar.Matcher do
          |> Enum.map(fn(x) ->
              case String.match?(x, ~r/\".*\"/) do
                 true -> String.replace("#{x}", "\"", "")
-                false -> String.to_atom(String.downcase(x))
+                false -> create_atom(String.downcase(x))
             end
         end)
+    end
+
+    def create_atom(str) do 
+      try do 
+        String.to_existing_atom(str)
+      rescue
+        _ -> String.to_atom(str)
+      end 
     end
 
     @doc """
