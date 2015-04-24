@@ -26,16 +26,17 @@ defmodule Cedar.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [ {:phoenix, "~> 0.11.0"},
-      {:phoenix_live_reload, "~> 0.3"},
+      {:phoenix_live_reload, "~> 0.3.1"},
       {:phoenix_ecto, "~> 0.1"},
       {:postgrex, ">= 0.0.0"},
       {:cowboy, "~> 1.0"},
       {:mailgun, "~> 0.0.1"},
-      {:httpoison, "~> 0.6"},
-      {:uuid, "~> 0.1.5"},
-      {:exrm, "~> 0.14.16"},
-      {:continuum, git: "https://github.com/meh/continuum"}
-    ]
+      {:httpoison, "~> 0.6.2"},
+      {:uuid, "~> 1.0.0"},
+      {:exrm, "~> 0.15.3"},
+      {:continuum, git: "https://github.com/meh/continuum"},
+      {:timex, "~> 0.13.4"}
+  ]
   end
 
   defp external_actions(:test), do: false
