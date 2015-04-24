@@ -10,7 +10,7 @@ defmodule Cedar.Actions.Email do
   """
   def send(to, subject, body) do
     if @actually_send do
-      IO.puts "Actualkly"
+      IO.puts "Actually sending email"
       send_email to: to,
                from: @from,
             subject: subject,
