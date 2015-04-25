@@ -1,8 +1,9 @@
 defmodule Cedar.Vars do
   alias Cedar.Variable
+  alias Cedar.VarServer
 
   def resolve_var("@" <> key) do
-    variable = Repo.get(Variable, key)
+    variable = VarServer.lookup(key)
     resolve_result(variable.value, key)
   end
 

@@ -12,10 +12,12 @@ defmodule Cedar do
       worker(Cedar.Decider, []),
       worker(Cedar.Audit, []),
       worker(Cedar.Repo, []),
+      worker(Cedar.VarServer, [])
     ]
-
+  
     opts = [strategy: :one_for_one, name: Cedar.Supervisor]
     Supervisor.start_link(children, opts)
+
   end
 
   def stop do
