@@ -8,7 +8,7 @@ defmodule Cedar.Actions do
     """
 
 
-    @doc """
+    """
     Return the {patient_id, episode_id} for this episode
     """
     defp episode_details(episode) do
@@ -17,7 +17,7 @@ defmodule Cedar.Actions do
       { patient_id, "#{episode["id"]}" }
     end
 
-    @doc """
+    """
     Look in the templates directory for BEHAVIOUR for a template
     matching FILENAME.
 
@@ -44,9 +44,10 @@ defmodule Cedar.Actions do
     def return(behaviour, [msg], {_action, pre, post, _endpoint}) do
         IO.puts "return action"
         contents = EEx.eval_file template(behaviour, msg), [pre: pre, post: post]
+        contents
     end
 
-    def sms(behaviour, [msg, :to, number], {action, pre, post, endpoint}) do
+    def sms(_behaviour, [msg, :to, number], {_action, _pre, _post, _endpoint}) do
         IO.puts "sms action"
         # TODO: Actually get a response from the deliver call
         Cedar.Actions.SMS.deliver([number], msg)
