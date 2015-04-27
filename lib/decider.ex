@@ -18,6 +18,12 @@ defmodule Cedar.Decider do
     success
   end
 
+  def process_behaviours(action, {pre, post, endpoint}, id \\ "") do
+    Path.wildcard("behaviours/*/*.behaviour")
+      |> Enum.map(&(behave &1, action, {pre, post, endpoint}, id))
+  end
+
+
   @doc"""
   Decide on what to do for change events.
   """
@@ -32,8 +38,9 @@ defmodule Cedar.Decider do
         post  = params[:post]
         endpoint = params[:endpoint]
 
-        Path.wildcard("behaviours/*/*.behaviour")
-          |> Enum.map(&(behave &1, :change, {pre, post, endpoint}, id))
+        Task.start fn ->
+          process_behaviours( :change, {pre, post, endpoint}, id )
+        end
 
       { :admit, params } ->
         episode = params[:episode]
@@ -41,8 +48,9 @@ defmodule Cedar.Decider do
 
         IO.puts "Called admit for endpoint #{endpoint}"
 
-        Path.wildcard("behaviours/*/*.behaviour")
-          |> Enum.map(&(behave &1, :admit, {%{}, episode, endpoint}, id))
+        Task.start fn ->
+          process_behaviours( :admit, {%{}, episode, endpoint}, id )
+        end
 
       { :discharge, params } ->
         episode = params[:episode]
@@ -50,8 +58,9 @@ defmodule Cedar.Decider do
 
         IO.puts "Called discharge for endpoint #{endpoint}"
 
-        Path.wildcard("behaviours/*/*.behaviour")
-          |> Enum.map(&(behave &1, :discharge, {episode, episode, endpoint}, id))
+        Task.start fn ->
+          process_behaviours( :discharge, {episode, episode, endpoint}, id )
+        end
 
       { :transfer, params } ->
         pre  = params[:pre]
@@ -60,8 +69,9 @@ defmodule Cedar.Decider do
 
         IO.puts "Called transfer for endpoint #{endpoint}"
 
-        Path.wildcard("behaviours/*/*.behaviour")
-          |> Enum.map(&(behave &1, :transfer, {pre, post, endpoint}, id))
+        Task.start fn ->
+          process_behaviours( :transfer, {pre, post, endpoint}, id )
+        end
 
       _ ->
     end
