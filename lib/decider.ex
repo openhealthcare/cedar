@@ -2,7 +2,7 @@ defmodule Cedar.Decider do
 
   def start_link do
     sub = spawn_link &(decide/0)
-    Phoenix.PubSub.subscribe(Cedar.PubSub, sub, "decision")
+    Process.register(sub, :decider)
     {:ok, sub}
   end
 

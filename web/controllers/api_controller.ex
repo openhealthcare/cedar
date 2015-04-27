@@ -44,7 +44,7 @@ defmodule Cedar.Api01Controller do
     {_status, pre}  = Poison.decode(pre)
     {_status, post} = Poison.decode(post)
     {_status, endpoint} = Poison.decode(endpoint)
-    Phoenix.PubSub.broadcast Cedar.PubSub, "decision", {:change , pre: pre, post: post, endpoint: endpoint}
+    send :decider, {:change , pre: pre, post: post, endpoint: endpoint}
     json conn, %{:success => "We got your change. We'll be in touch."}
   end
 
@@ -57,7 +57,7 @@ defmodule Cedar.Api01Controller do
   end
 
   def admit(conn, %{ "episode" => episode, "endpoint" => endpoint }) do
-    Phoenix.PubSub.broadcast Cedar.PubSub,"decision", {:admit, episode: episode, endpoint: endpoint}
+    send :decider, {:admit, episode: episode, endpoint: endpoint}
     json conn, %{:success => "We got your admission. We'll be in touch."}
   end
 
@@ -70,7 +70,7 @@ defmodule Cedar.Api01Controller do
   end
 
   def discharge(conn, %{ "episode" => episode, "endpoint" => endpoint }) do
-    Phoenix.PubSub.broadcast Cedar.PubSub,"decision", {:discharge, episode: episode, endpoint: endpoint}
+    send :decider, {:discharge, episode: episode, endpoint: endpoint}
     json conn, %{:success => "We got your discharge. We'll be in touch."}
   end
 
@@ -84,7 +84,7 @@ defmodule Cedar.Api01Controller do
 
   # ADT-A04 – Patient Registration
   def registration(conn, %{ "pre" => pre, "post" => post, "endpoint" => endpoint }) do
-    Phoenix.PubSub.broadcast Cedar.PubSub,"decision", {:registration, pre: pre, post: post, endpoint: endpoint}
+    send :decider, {:registration, pre: pre, post: post, endpoint: endpoint}
     json conn, %{:success => "We got your registration. We'll be in touch."}
   end
 
@@ -98,7 +98,7 @@ defmodule Cedar.Api01Controller do
 
   # ADT-A05 – patient pre-admission
   def preadmission(conn, %{ "pre" => pre, "post" => post, "endpoint" => endpoint }) do
-    Phoenix.PubSub.broadcast Cedar.PubSub,"decision", {:preadmission, pre: pre, post: post, endpoint: endpoint}
+    send :decider, {:preadmission, pre: pre, post: post, endpoint: endpoint}
     json conn, %{:success => "We got your preadmission. We'll be in touch."}
   end
 
@@ -112,7 +112,7 @@ defmodule Cedar.Api01Controller do
 
   # ADT-A08 – patient information update
   def update(conn, %{ "pre" => pre, "post" => post, "endpoint" => endpoint }) do
-    Phoenix.PubSub.broadcast Cedar.PubSub,"decision", {:update, pre: pre, post: post, endpoint: endpoint}
+    send :decider, {:update, pre: pre, post: post, endpoint: endpoint}
     json conn, %{:success => "We got your update. We'll be in touch."}
   end
 
