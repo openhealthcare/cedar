@@ -1,5 +1,4 @@
 defmodule Cedar.Vars do
-  alias Cedar.Variable
   alias Cedar.VarServer
 
   def resolve_var("@" <> key) do
@@ -12,8 +11,8 @@ defmodule Cedar.Vars do
     key
   end
 
-  defp resolve_result(_, deflt) do
-    deflt
+  defp resolve_result("", deflt) do 
+    deflt 
   end
 
   defp resolve_result(val, _deflt) do
