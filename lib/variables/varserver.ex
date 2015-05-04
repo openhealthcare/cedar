@@ -1,5 +1,5 @@
 defmodule Cedar.VarServer do
-  use GenServer 
+  use GenServer
   alias Poison, as: JSON
 
   @filename "priv/vars/data.json"
@@ -17,9 +17,9 @@ defmodule Cedar.VarServer do
     GenServer.cast(:varserver, {:create, name, value})
   end
 
-  def all do 
+  def all do
     GenServer.call(:varserver, {:all})
-  end 
+  end
 
   ##############################
   # Genserver specific functions
@@ -33,15 +33,15 @@ defmodule Cedar.VarServer do
     {:reply, Dict.get(state, name), state}
   end
 
-  def handle_call({:all}, _from, state) do 
+  def handle_call({:all}, _from, state) do
     {:reply, state, state}
-  end 
+  end
 
   def handle_cast({:create, name, value}, state) do
     state = Dict.put(state, name, value )
 
-    data = JSON.encode!(state) |> String.to_char_list 
-    File.write! @filename, data 
+    data = JSON.encode!(state) |> String.to_char_list
+    File.write! @filename, data
     {:noreply, state}
   end
 
