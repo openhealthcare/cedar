@@ -2,13 +2,7 @@ language: elixir
 sudo: false
 otp_release:
   - 17.4
-addons:
-  postgresql: "9.3"
-before_script:
-  - createuser cedar
-  - createdb cedar -E utf8 -O cedar
 script:
-  - mix ecto.migrate
   - mix test
 notifications:
   slack: ohcuk:6spaME3CB7f2PGrMAcklYWqp
