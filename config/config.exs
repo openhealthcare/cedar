@@ -26,7 +26,7 @@ config :auditor, location: "logs/"
 config :cedar, mailgun_domain: "sandbox2f06dae5c6c840b9824a8160a83e0e72.mailgun.org",
                mailgun_key: System.get_env("MAILGUN_KEY"),
                external_actions: true
-               
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
