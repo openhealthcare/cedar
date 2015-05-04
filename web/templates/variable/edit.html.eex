@@ -7,6 +7,7 @@
 
 <h2>Edit variable</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: variable_path(@conn, :update, @variable) %>
+<%= render "form.html", key: @key, value: @value,
+                        action: variable_path(@conn, :update, @key),
+                        method: "PUT", enabled: false %>
 

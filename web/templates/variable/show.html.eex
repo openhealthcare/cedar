@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li><a href="/variables">Variables</a></li>
-  <li class="active"><%= @variable.key %></li>
+  <li class="active"><%= @key %></li>
 </ol>
 
 
@@ -11,17 +11,12 @@
 
   <li>
     <strong>Key:</strong>
-    <%= @variable.key %>
+    <%= @key %>
   </li>
 
   <li>
     <strong>Value:</strong>
-    <%= @variable.value %>
-  </li>
-
-  <li>
-    <strong>Owner:</strong>
-    <%= @variable.owner %>
+    <%= @value %>
   </li>
 
 </ul>

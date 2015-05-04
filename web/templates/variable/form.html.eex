@@ -1,33 +1,21 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if f.errors != [] do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below:</p>
-      <ul>
-        <%= for {attr, message} <- f.errors do %>
-          <li><%= humanize(attr) %> <%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+
+<form action="<%= @action %>" method="POST">
+  <input type="hidden" name="_method" value="<%= @method %>"/>
 
   <div class="form-group">
     <label>Key</label>
-    <%= text_input f, :key, class: "form-control" %>
+    <input name="key" value="<%= @key %>" class="form-control"  <%= if @enabled == false do %>disabled<%= end %>>
   </div>
 
   <div class="form-group">
     <label>Value</label>
-    <%= text_input f, :value, class: "form-control" %>
+    <input name="value" value="<%= @value %>" class="form-control">
   </div>
 
   <div class="form-group">
-    <label>Owner</label>
-    <%= text_input f, :owner, class: "form-control" %>
+    <input type="submit" class="btn btn-primary" value="Save"/>
+    <a href="/variables" class="btn">Cancel</a>
   </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-    <%= link "Cancel", class: "btn", to: "/variables" %>
-  </div>
-
-<% end %>
+</form>

@@ -8,4 +8,5 @@
 <h2>New variable</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: variable_path(@conn, :create) %>
+                        action: variable_path(@conn, :create),
+                        method: "POST", enabled: true  %>

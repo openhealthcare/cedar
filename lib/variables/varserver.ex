@@ -17,8 +17,17 @@ defmodule Cedar.VarServer do
     GenServer.cast(:varserver, {:create, name, value})
   end
 
+  def delete(name) do
+    GenServer.cast(:varserver, {:delete, name})
+  end
+
   def all do
     GenServer.call(:varserver, {:all})
+  end
+
+  defp write_json(state) do
+    data = JSON.encode!(state) |> String.to_char_list
+    File.write! @filename, data
   end
 
   ##############################
@@ -37,11 +46,15 @@ defmodule Cedar.VarServer do
     {:reply, state, state}
   end
 
+  def handle_cast({:delete, name}, state) do
+    state = Dict.delete(state, name)
+    write_json(state)
+    {:noreply, state}
+  end
+
   def handle_cast({:create, name, value}, state) do
     state = Dict.put(state, name, value )
-
-    data = JSON.encode!(state) |> String.to_char_list
-    File.write! @filename, data
+    write_json(state)
     {:noreply, state}
   end
 

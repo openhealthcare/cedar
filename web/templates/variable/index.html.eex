@@ -23,16 +23,15 @@
       </tr>
     </thead>
     <tbody>
-    <%= for variable <- @variables do %>
+    <%= for {key, val} <- @variables do %>
       <tr>
-        <td><%= variable.key %></td>
-        <td><%= variable.value %></td>
-        <td><%= variable.owner %></td>
+        <td><%= key %></td>
+        <td><%= val %></td>
 
         <td class="text-right">
-          <%= link "Show", to: variable_path(@conn, :show, variable), class: "btn btn-default btn-xs" %>
-          <%= link "Edit", to: variable_path(@conn, :edit, variable), class: "btn btn-default btn-xs" %>
-          <%= link "Delete", to: variable_path(@conn, :delete, variable), method: :delete, class: "btn btn-danger btn-xs" %>
+          <%= link "Show", to: variable_path(@conn, :show, key), class: "btn btn-default btn-xs" %>
+          <%= link "Edit", to: variable_path(@conn, :edit, key), class: "btn btn-default btn-xs" %>
+          <%= link "Delete", to: variable_path(@conn, :delete, key), method: :delete, class: "btn btn-danger btn-xs" %>
         </td>
       </tr>
     <% end %>

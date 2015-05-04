@@ -1,13 +1,14 @@
 defmodule Cedar.VariableController do
   use Cedar.Web, :controller
 
+  alias Cedar.VarServer
   alias Cedar.Variable
 
-  plug :scrub_params, "variable" when action in [:create, :update]
   plug :action
 
   def index(conn, _params) do
-    variables = Repo.all(Variable)
+    variables = VarServer.all
+
     render conn, "index.html", variables: variables
   end
 
@@ -16,49 +17,38 @@ defmodule Cedar.VariableController do
     render conn, "new.html", changeset: changeset
   end
 
-  def create(conn, %{"variable" => variable_params}) do
-    changeset = Variable.changeset(%Variable{}, variable_params)
+  def create(conn, %{"key" => key, "value" => value}) do
 
-    if changeset.valid? do
-      Repo.insert(changeset)
 
-      conn
-      |> put_flash(:info, "Variable created successfully.")
-      |> redirect(to: variable_path(conn, :index))
-    else
-      render conn, "new.html", changeset: changeset
-    end
+    VarServer.create(key, value)
+
+    conn
+    |> put_flash(:info, "Variable created successfully.")
+    |> redirect(to: variable_path(conn, :index))
+
   end
 
   def show(conn, %{"id" => id}) do
-    variable = Repo.get(Variable, id)
-    render conn, "show.html", variable: variable
+    value = VarServer.lookup(id)
+    render conn, "show.html", key: id, value: value
   end
 
   def edit(conn, %{"id" => id}) do
-    variable = Repo.get(Variable, id)
-    changeset = Variable.changeset(variable)
-    render conn, "edit.html", variable: variable, changeset: changeset
+    value = VarServer.lookup(id)
+    render conn, "edit.html", key: id, value: value
   end
 
-  def update(conn, %{"id" => id, "variable" => variable_params}) do
-    variable = Repo.get(Variable, id)
-    changeset = Variable.changeset(variable, variable_params)
+  def update(conn,  %{"id" => key, "value" => value}) do
+    VarServer.create(key, value)
 
-    if changeset.valid? do
-      Repo.update(changeset)
-
-      conn
-      |> put_flash(:info, "Variable updated successfully.")
-      |> redirect(to: variable_path(conn, :index))
-    else
-      render conn, "edit.html", variable: variable, changeset: changeset
-    end
+    conn
+    |> put_flash(:info, "Variable updated successfully.")
+    |> redirect(to: variable_path(conn, :index))
   end
 
-  def delete(conn, %{"id" => id}) do
-    variable = Repo.get(Variable, id)
-    Repo.delete(variable)
+  def delete(conn, %{"id" => key}) do
+
+    VarServer.delete(key)
 
     conn
     |> put_flash(:info, "Variable deleted successfully.")
