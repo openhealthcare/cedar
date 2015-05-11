@@ -5,7 +5,6 @@ config :cedar, Cedar.Endpoint,
   debug_errors: true,
   cache_static_lookup: false
 
-
 # Enables code reloading for development
 config :cedar, Cedar.Endpoint,
   code_reloader: true,

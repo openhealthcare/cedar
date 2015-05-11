@@ -63,7 +63,7 @@ defmodule Cedar.Audit do
         IO.puts "Wrote log entry to #{Path.join([path, name])}"
 
         # Broadcast audit log to listeners
-        Cedar.Endpoint.broadcast("audit:all", "new:message", data_dict)
+        Cedar.Endpoint.broadcast!("audit:all", "new:message", data_dict)
       _ ->  nil
     end
     audit logdir

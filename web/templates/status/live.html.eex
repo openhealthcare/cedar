@@ -7,17 +7,4 @@
 </div>
 
 
-<script type="text/javascript">
-var socket = new Phoenix.Socket("ws://" + location.host + "/ws");
-var $messages = $("#messages");
-
-socket.join("audit:all", {}).receive("ok", function(chan){
-  console.log("Connected to " + chan )
-
-  chan.on("new:message", function(msg){
-    console.log(msg)
-    $messages.append("<br/>" + msg.id + " ->"  + msg.success + " - " + msg.behaviour)
-  });
-
-});
-</script>
+<script type="text/javascript" src="/js/audit.js"></script>

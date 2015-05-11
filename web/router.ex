@@ -2,7 +2,7 @@ defmodule Cedar.Router do
   use Phoenix.Router
 
   socket "/ws", Cedar do
-    channel "audit:all", AuditChannel
+    channel "audit:*", AuditChannel
     channel "broadcast", BroadcastChannel
   end
 
