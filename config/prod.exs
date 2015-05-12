@@ -20,15 +20,9 @@ config :cedar, Cedar.Endpoint,
 # Do not pring debug messages in production
 config :logger, level: :info
 
-# ## Using releases
-#
-# If you are doing OTP releases, you need to instruct Phoenix
-# to start the server for all endpoints:
-#
-#     config :phoenix, :serve_endpoints, true
-#
-# Alternatively, you can configure exactly which server to
-# start per endpoint:
-#
-#     config :cedar, Cedar.Endpoint, server: true
-#
+config :cedar, Cedar.Repo,
+      adapter: Ecto.Adapters.Postgres,
+      username: "cedar",
+      password: "password",
+      database: "cedar"
+
