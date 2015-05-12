@@ -31,6 +31,7 @@ defmodule Cedar.Router do
     get "/status/:year/:month", StatusController, :month
     get "/status/:year/:month/:day", StatusController, :day
 
+    get "/variables/download", VariableController, :download
     resources "/variables", VariableController
 
     get "/api/v0.1/", Api01Controller, :index

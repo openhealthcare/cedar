@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="col-md-8">
-  <h2>Listing variables
+  <h2>Listing variables <span style="font-size:small;"><a href="/variables/download">Download all variables</a></span>
   <%= link "New variable", to: variable_path(@conn, :new), class: "btn btn-primary pull-right" %>
 
   </h2>

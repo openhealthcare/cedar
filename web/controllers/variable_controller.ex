@@ -1,5 +1,6 @@
 defmodule Cedar.VariableController do
   use Cedar.Web, :controller
+  alias Poison, as: JSON
 
   alias Cedar.VarServer
   alias Cedar.Variable
@@ -10,6 +11,13 @@ defmodule Cedar.VariableController do
     variables = VarServer.all
 
     render conn, "index.html", variables: variables
+  end
+
+  def download(conn, _params) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> put_resp_header("Content-Disposition", "attachment; filename=variables.json;")
+    |> send_resp(200, JSON.encode!(VarServer.all))
   end
 
   def new(conn, _params) do
