@@ -22,6 +22,8 @@ defmodule Cedar.Router do
 
     get "/", PageController, :index, as: :pages
     get "/editor/rules", EditorController, :editor
+    get "/editor/rules/download", EditorController, :download_rules
+
 
     get "/status", StatusController, :index
     get "/status/live", StatusController, :live
