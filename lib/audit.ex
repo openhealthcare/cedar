@@ -1,6 +1,4 @@
 defmodule Cedar.Audit do
-  use Continuum
-
   alias Poison, as: JSON
   require Logger
   require Cedar.AuditChannel
@@ -25,7 +23,7 @@ defmodule Cedar.Audit do
     logs/year/month/day/hour/<timestamp>.log
   """
   defp log_filename(logdir, id) do
-    {{year, month, day}, {hour, min, sec}} = DateTime.now
+    {{year, month, day}, {hour, min, sec}} = :calendar.universal_time()
 
     p = Path.join([logdir, "#{year}", "#{month}", "#{day}", "#{hour}"])
     {p, "#{min}_#{sec}_#{id}.log"}

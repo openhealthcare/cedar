@@ -20,12 +20,6 @@ config :cedar, Cedar.Endpoint,
 # Do not pring debug messages in production
 config :logger, level: :info
 
-config :cedar, Cedar.Repo,
-      adapter: Ecto.Adapters.Postgres,
-      username: "postgres",
-      password: "postgres"
-      database: "cedar"
-
 # ## Using releases
 #
 # If you are doing OTP releases, you need to instruct Phoenix

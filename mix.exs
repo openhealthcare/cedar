@@ -34,8 +34,6 @@ defmodule Cedar.Mixfile do
       {:httpoison, "~> 0.6.2"},
       {:uuid, "~> 1.0.0"},
       {:exrm, "~> 0.15.3"},
-      {:continuum, git: "https://github.com/meh/continuum"},
-      {:timex, "~> 0.13.4"},
       {:phoenix_html, "~> 1.0"},
   ]
   end
