@@ -5,8 +5,6 @@ defmodule Cedar.VariableController do
   alias Cedar.VarServer
   alias Cedar.Variable
 
-  plug :action
-
   def index(conn, _params) do
     variables = VarServer.all
 

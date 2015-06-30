@@ -1,8 +1,6 @@
 defmodule Cedar.StatusController do
   use Cedar.Web, :controller
 
-  plug :action
-
   def index(conn, _params) do
     # If today's year == the only year, just redirect
     # render conn, "index.html", years: [2015], year: 2015
