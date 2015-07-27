@@ -1,6 +1,8 @@
 defmodule Cedar.Endpoint do
   use Phoenix.Endpoint, otp_app: :cedar
 
+ socket "/ws", Cedar.UserSocket
+
   if code_reloading? do
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
@@ -31,5 +33,6 @@ defmodule Cedar.Endpoint do
     signing_salt: "XreCosfr",
     encryption_salt: "3I/A4Miw"
 
-  plug :router, Cedar.Router
+  plug Cedar.Router
+
 end

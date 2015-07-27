@@ -1,11 +1,6 @@
 defmodule Cedar.Router do
   use Phoenix.Router
 
-  socket "/ws", Cedar do
-    channel "audit:*", AuditChannel
-    channel "broadcast", BroadcastChannel
-  end
-
   pipeline :browser do
     plug :accepts, ~w(html)
     plug :fetch_session
