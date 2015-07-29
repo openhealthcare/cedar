@@ -35,7 +35,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/editor/rules">Edit Rules</a></li>
           <li><a href="/variables">Edit Variables</a></li>
-          <li><a href="/status">View Status</a></li>
+          <li><a href="/status/live">View Status</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
