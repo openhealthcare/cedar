@@ -7,7 +7,7 @@ config :cedar, Cedar.Endpoint,
 
 # Enables code reloading for development
 config :cedar, Cedar.Endpoint,
-  code_reloader: true,
+  code_reloader: System.get_env("windir") == nil,
   live_reload: [
     patterns: [~r{priv/static/.*(js|css|png|jpeg|jpg|gif)$},
                ~r{web/views/.*(ex)$},

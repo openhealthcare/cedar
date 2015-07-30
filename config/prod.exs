@@ -13,9 +13,10 @@ use Mix.Config
 
 config :cedar, Cedar.Endpoint,
   url: [host: "localhost"],
-  http: [port: System.get_env("PORT")],
+  http: [port: System.get_env("PORT") || 4000 ],
   secret_key_base: "dywFWz8XZvQwGDVA6MA4bllVBBPqtZE8psfnf+7PSCxOsC4sCigQ5/rriKCUfkVR",
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
+  code_reloader: false
 
 # Do not pring debug messages in production
 config :logger, level: :info
