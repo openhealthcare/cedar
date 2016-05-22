@@ -1,3 +1,0 @@
-"""
-Cedar handler tasks
-"""
